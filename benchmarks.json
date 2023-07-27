@@ -1,0 +1,122 @@
+[
+  {
+    "name": "detector",
+    "params": [
+      "n"
+    ],
+    "generate": {
+      "n": 8
+    },
+    "specification": "detector.tlsf",
+    "implementations": [
+      {
+        "params": {
+          "n": 2
+        },
+        "file": "detector_2.vl"
+      },
+      {
+        "params": {
+          "n": 4
+        },
+        "file": "detector_4.vl"
+      }
+    ]
+  },
+  {
+    "name": "mux",
+    "params": [
+      "n"
+    ],
+    "generate": {
+      "n": 16
+    },
+    "specification": "mux.tlsf",
+    "implementations": [
+      {
+        "params": {
+          "n": 4
+        },
+        "file": "mux_4.vl"
+      },
+      {
+        "params": {
+          "n": 8
+        },
+        "file": "mux_8.vl"
+      }
+    ]
+  },
+  {
+    "name": "full_arbiter",
+    "params": [
+      "n"
+    ],
+    "generate": {
+      "n": 4
+    },
+    "specification": "full_arbiter.tlsf",
+    "implementations": [
+      {
+        "params": {
+          "n": 2
+        },
+        "file": "full_arbiter_2.vl"
+      },
+      {
+        "params": {
+          "n": 3
+        },
+        "file": "full_arbiter_4.vl"
+      }
+    ]
+  },
+  {
+    "name": "simple_arbiter",
+    "params": [
+      "n"
+    ],
+    "generate": {
+      "n": 8
+    },
+    "specification": "simple_arbiter.tlsf",
+    "implementations": [
+      {
+        "params": {
+          "n": 2
+        },
+        "file": "simple_arbiter_2.vl"
+      },
+      {
+        "params": {
+          "n": 4
+        },
+        "file": "simple_arbiter_4.vl"
+      }
+    ]
+  },
+  {
+    "name": "shift",
+    "params": [
+      "n"
+    ],
+    "generate": {
+      "n": 16
+    },
+    "specification": "shift.tlsf",
+    "implementations": [
+      {
+        "params": {
+          "n": 4
+        },
+        "file": "shift_4.vl"
+      },
+      {
+        "params": {
+          "n": 8
+        },
+        "file": "shift_8.vl"
+      }
+    ]
+  }
+]

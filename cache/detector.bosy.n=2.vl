@@ -1,0 +1,28 @@
+module detector(r_0, r_1, g);
+  input r_0;
+  input r_1;
+  output g;
+  reg [0:0] state;
+
+  assign g = ((state == 1) && r_1 || (state == 0) && (!r_1 && r_0)) ? 1 : 0;
+
+  initial
+  begin
+    state = 0;
+  end
+  always @($global_clock)
+  begin
+    case(state)
+      0: if (!r_0)
+           state = 0;
+         else 
+           state = 1;
+
+      1: if (!(r_1 && !r_0))
+           state = 1;
+         else 
+           state = 0;
+
+    endcase
+  end
+endmodule

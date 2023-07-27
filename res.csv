@@ -1,0 +1,6 @@
+"benchmark","self","bosy","none"
+"detector","SUCCESS","FALSE_RESULT","FALSE_RESULT"
+"mux","SUCCESS","FALSE_RESULT","FALSE_RESULT"
+"full_arbiter","SUCCESS","no_code","ERROR_COMBINE_AIGER"
+"simple_arbiter","SUCCESS","FALSE_RESULT","FALSE_RESULT"
+"shift","ERROR_COMBINE_AIGER","FALSE_RESULT","FALSE_RESULT"

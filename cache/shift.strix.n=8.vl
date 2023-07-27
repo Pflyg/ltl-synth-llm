@@ -1,0 +1,27 @@
+module shift (
+  input in_0,
+  input in_1,
+  input in_2,
+  input in_3,
+  input in_4,
+  input in_5,
+  input in_6,
+  input in_7,
+  output reg out_0,
+  output reg out_1,
+  output reg out_2,
+  output reg out_3,
+  output reg out_4,
+  output reg out_5,
+  output reg out_6,
+  output reg out_7
+);
+  assign out_0 = in_7;
+  assign out_1 = in_0;
+  assign out_2 = in_1;
+  assign out_3 = in_2;
+  assign out_4 = in_3;
+  assign out_5 = in_4;
+  assign out_6 = in_5;
+  assign out_7 = in_6;
+endmodule

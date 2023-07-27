@@ -1,0 +1,30 @@
+module mux(in_0, in_1, in_2, in_3, in_4, in_5, in_6, in_7, select_0, select_1, select_2, out);
+  input in_0;
+  input in_1;
+  input in_2;
+  input in_3;
+  input in_4;
+  input in_5;
+  input in_6;
+  input in_7;
+  input select_0;
+  input select_1;
+  input select_2;
+  output out;
+  reg [0:0] state;
+
+  assign out = ((state == 0) && !(!(!(!(!(select_0 && !in_5) && select_2 && !(!select_0 && !in_4)) && !(!(select_0 && !in_1) && !select_2 && !(!select_0 && !in_0))) && !select_1) && !(!(!(!(select_0 && !in_3) && !select_2 && !(!select_0 && !in_2)) && !(!(select_0 && !in_7) && select_2 && !(!select_0 && !in_6))) && select_1))) ? 1 : 0;
+
+  initial
+  begin
+    state = 0;
+  end
+  always @($global_clock)
+  begin
+    case(state)
+      0: 
+           state = 0;
+
+    endcase
+  end
+endmodule

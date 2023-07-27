@@ -1,0 +1,508 @@
+[
+  {
+    "name": "amba_decomposed_arbiter",
+    "params": [
+      "n"
+    ],
+    "generate": {
+      "n": 8
+    },
+    "specification": "/mnt/win/Users/Benedict/Nextcloud/Dokumente/Uni/Bachelorarbeit/benchmarks/tlsf/amba_decomposed/parametric/amba_decomposed_arbiter.tlsf",
+    "implementations": [
+      {
+        "params": {
+          "n": 2
+        }
+      },
+      {
+        "params": {
+          "n": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "amba_decomposed_encode",
+    "params": [
+      "n"
+    ],
+    "generate": {
+      "n": 16
+    },
+    "specification": "/mnt/win/Users/Benedict/Nextcloud/Dokumente/Uni/Bachelorarbeit/benchmarks/tlsf/amba_decomposed/parametric/amba_decomposed_encode.tlsf",
+    "implementations": [
+      {
+        "params": {
+          "n": 4
+        }
+      },
+      {
+        "params": {
+          "n": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "amba_decomposed_lock",
+    "params": [
+      "n"
+    ],
+    "generate": {
+      "n": 16
+    },
+    "specification": "/mnt/win/Users/Benedict/Nextcloud/Dokumente/Uni/Bachelorarbeit/benchmarks/tlsf/amba_decomposed/parametric/amba_decomposed_lock.tlsf",
+    "implementations": [
+      {
+        "params": {
+          "n": 4
+        }
+      },
+      {
+        "params": {
+          "n": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "collector_v1",
+    "params": [
+      "n"
+    ],
+    "generate": {
+      "n": 16
+    },
+    "specification": "/mnt/win/Users/Benedict/Nextcloud/Dokumente/Uni/Bachelorarbeit/benchmarks/tlsf/collector/parametric/collector_v1.tlsf",
+    "implementations": [
+      {
+        "params": {
+          "n": 4
+        }
+      },
+      {
+        "params": {
+          "n": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "collector_v2",
+    "params": [
+      "n"
+    ],
+    "generate": {
+      "n": 16
+    },
+    "specification": "/mnt/win/Users/Benedict/Nextcloud/Dokumente/Uni/Bachelorarbeit/benchmarks/tlsf/collector/parametric/collector_v2.tlsf",
+    "implementations": [
+      {
+        "params": {
+          "n": 4
+        }
+      },
+      {
+        "params": {
+          "n": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "collector_v3",
+    "params": [
+      "n"
+    ],
+    "generate": {
+      "n": 16
+    },
+    "specification": "/mnt/win/Users/Benedict/Nextcloud/Dokumente/Uni/Bachelorarbeit/benchmarks/tlsf/collector/parametric/collector_v3.tlsf",
+    "implementations": [
+      {
+        "params": {
+          "n": 4
+        }
+      },
+      {
+        "params": {
+          "n": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "detector",
+    "params": [
+      "n"
+    ],
+    "generate": {
+      "n": 64
+    },
+    "specification": "/mnt/win/Users/Benedict/Nextcloud/Dokumente/Uni/Bachelorarbeit/benchmarks/tlsf/detector/parametric/detector.tlsf",
+    "implementations": [
+      {
+        "params": {
+          "n": 16
+        }
+      },
+      {
+        "params": {
+          "n": 32
+        }
+      }
+    ]
+  },
+  {
+    "name": "full_arbiter",
+    "params": [
+      "n"
+    ],
+    "generate": {
+      "n": 8
+    },
+    "specification": "/mnt/win/Users/Benedict/Nextcloud/Dokumente/Uni/Bachelorarbeit/benchmarks/tlsf/full_arbiter/parametric/full_arbiter.tlsf",
+    "implementations": [
+      {
+        "params": {
+          "n": 2
+        }
+      },
+      {
+        "params": {
+          "n": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "load_balancer",
+    "params": [
+      "n"
+    ],
+    "generate": {
+      "n": 8
+    },
+    "specification": "/mnt/win/Users/Benedict/Nextcloud/Dokumente/Uni/Bachelorarbeit/benchmarks/tlsf/load_balancer/parametric/load_balancer.tlsf",
+    "implementations": [
+      {
+        "params": {
+          "n": 2
+        }
+      },
+      {
+        "params": {
+          "n": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "ltl2dba_alpha",
+    "params": [
+      "n"
+    ],
+    "generate": {
+      "n": 32
+    },
+    "specification": "/mnt/win/Users/Benedict/Nextcloud/Dokumente/Uni/Bachelorarbeit/benchmarks/tlsf/ltl2dba/parametric/ltl2dba_alpha.tlsf",
+    "implementations": [
+      {
+        "params": {
+          "n": 8
+        }
+      },
+      {
+        "params": {
+          "n": 16
+        }
+      }
+    ]
+  },
+  {
+    "name": "ltl2dba_beta",
+    "params": [
+      "n"
+    ],
+    "generate": {
+      "n": 16
+    },
+    "specification": "/mnt/win/Users/Benedict/Nextcloud/Dokumente/Uni/Bachelorarbeit/benchmarks/tlsf/ltl2dba/parametric/ltl2dba_beta.tlsf",
+    "implementations": [
+      {
+        "params": {
+          "n": 4
+        }
+      },
+      {
+        "params": {
+          "n": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "ltl2dba_C2",
+    "params": [
+      "n"
+    ],
+    "generate": {
+      "n": 64
+    },
+    "specification": "/mnt/win/Users/Benedict/Nextcloud/Dokumente/Uni/Bachelorarbeit/benchmarks/tlsf/ltl2dba/parametric/ltl2dba_C2.tlsf",
+    "implementations": [
+      {
+        "params": {
+          "n": 16
+        }
+      },
+      {
+        "params": {
+          "n": 32
+        }
+      }
+    ]
+  },
+  {
+    "name": "ltl2dba_E",
+    "params": [
+      "n"
+    ],
+    "generate": {
+      "n": 16
+    },
+    "specification": "/mnt/win/Users/Benedict/Nextcloud/Dokumente/Uni/Bachelorarbeit/benchmarks/tlsf/ltl2dba/parametric/ltl2dba_E.tlsf",
+    "implementations": [
+      {
+        "params": {
+          "n": 4
+        }
+      },
+      {
+        "params": {
+          "n": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "ltl2dba_Q",
+    "params": [
+      "n"
+    ],
+    "generate": {
+      "n": 8
+    },
+    "specification": "/mnt/win/Users/Benedict/Nextcloud/Dokumente/Uni/Bachelorarbeit/benchmarks/tlsf/ltl2dba/parametric/ltl2dba_Q.tlsf",
+    "implementations": [
+      {
+        "params": {
+          "n": 2
+        }
+      },
+      {
+        "params": {
+          "n": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "ltl2dba_U1",
+    "params": [
+      "n"
+    ],
+    "generate": {
+      "n": 16
+    },
+    "specification": "/mnt/win/Users/Benedict/Nextcloud/Dokumente/Uni/Bachelorarbeit/benchmarks/tlsf/ltl2dba/parametric/ltl2dba_U1.tlsf",
+    "implementations": [
+      {
+        "params": {
+          "n": 4
+        }
+      },
+      {
+        "params": {
+          "n": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "mux",
+    "params": [
+      "n"
+    ],
+    "generate": {
+      "n": 32
+    },
+    "specification": "/mnt/win/Users/Benedict/Nextcloud/Dokumente/Uni/Bachelorarbeit/benchmarks/tlsf/mux/parametric/mux.tlsf",
+    "implementations": [
+      {
+        "params": {
+          "n": 8
+        }
+      },
+      {
+        "params": {
+          "n": 16
+        }
+      }
+    ]
+  },
+  {
+    "name": "narylatch",
+    "params": [
+      "n"
+    ],
+    "generate": {
+      "n": 16
+    },
+    "specification": "/mnt/win/Users/Benedict/Nextcloud/Dokumente/Uni/Bachelorarbeit/benchmarks/tlsf/nary_latch/parametric/narylatch.tlsf",
+    "implementations": [
+      {
+        "params": {
+          "n": 4
+        }
+      },
+      {
+        "params": {
+          "n": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "prioritized_arbiter",
+    "params": [
+      "n"
+    ],
+    "generate": {
+      "n": 16
+    },
+    "specification": "/mnt/win/Users/Benedict/Nextcloud/Dokumente/Uni/Bachelorarbeit/benchmarks/tlsf/prioritized_arbiter/parametric/prioritized_arbiter.tlsf",
+    "implementations": [
+      {
+        "params": {
+          "n": 4
+        }
+      },
+      {
+        "params": {
+          "n": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "prioritized_arbiter_enc",
+    "params": [
+      "n"
+    ],
+    "generate": {
+      "n": 8
+    },
+    "specification": "/mnt/win/Users/Benedict/Nextcloud/Dokumente/Uni/Bachelorarbeit/benchmarks/tlsf/prioritized_arbiter_log/parametric/prioritized_arbiter_enc.tlsf",
+    "implementations": [
+      {
+        "params": {
+          "n": 2
+        }
+      },
+      {
+        "params": {
+          "n": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "round_robin_arbiter",
+    "params": [
+      "n"
+    ],
+    "generate": {
+      "n": 8
+    },
+    "specification": "/mnt/win/Users/Benedict/Nextcloud/Dokumente/Uni/Bachelorarbeit/benchmarks/tlsf/round_robin_arbiter/parametric/round_robin_arbiter.tlsf",
+    "implementations": [
+      {
+        "params": {
+          "n": 2
+        }
+      },
+      {
+        "params": {
+          "n": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "shift",
+    "params": [
+      "n"
+    ],
+    "generate": {
+      "n": 16
+    },
+    "specification": "/mnt/win/Users/Benedict/Nextcloud/Dokumente/Uni/Bachelorarbeit/benchmarks/tlsf/shift/parametric/shift.tlsf",
+    "implementations": [
+      {
+        "params": {
+          "n": 4
+        }
+      },
+      {
+        "params": {
+          "n": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "simple_arbiter",
+    "params": [
+      "n"
+    ],
+    "generate": {
+      "n": 32
+    },
+    "specification": "/mnt/win/Users/Benedict/Nextcloud/Dokumente/Uni/Bachelorarbeit/benchmarks/tlsf/simple_arbiter/parametric/simple_arbiter.tlsf",
+    "implementations": [
+      {
+        "params": {
+          "n": 8
+        }
+      },
+      {
+        "params": {
+          "n": 16
+        }
+      }
+    ]
+  },
+  {
+    "name": "simple_arbiter_enc",
+    "params": [
+      "n"
+    ],
+    "generate": {
+      "n": 8
+    },
+    "specification": "/mnt/win/Users/Benedict/Nextcloud/Dokumente/Uni/Bachelorarbeit/benchmarks/tlsf/simple_arbiter_log/parametric/simple_arbiter_enc.tlsf",
+    "implementations": [
+      {
+        "params": {
+          "n": 2
+        }
+      },
+      {
+        "params": {
+          "n": 4
+        }
+      }
+    ]
+  }
+]

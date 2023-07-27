@@ -1,0 +1,40 @@
+module simple_arbiter (
+  input r_0,
+  input r_1,
+  input r_2,
+  input r_3,
+  input r_4,
+  input r_5,
+  input r_6,
+  input r_7,
+  output reg g_0,
+  output reg g_1,
+  output reg g_2,
+  output reg g_3,
+  output reg g_4,
+  output reg g_5,
+  output reg g_6,
+  output reg g_7
+);
+  reg l0;
+  reg l1;
+  reg l2;
+  initial begin
+    l0 = 0;
+    l1 = 0;
+    l2 = 0;
+  end
+  assign g_0 = ((!l0) & (!l1)) & (!l2);
+  assign g_1 = ((l0) & (!l1)) & (!l2);
+  assign g_2 = ((!l0) & (l1)) & (!l2);
+  assign g_3 = ((l0) & (l1)) & (!l2);
+  assign g_4 = ((!l0) & (!l1)) & (l2);
+  assign g_5 = ((l0) & (!l1)) & (l2);
+  assign g_6 = ((!l0) & (l1)) & (l2);
+  assign g_7 = ((l0) & (l1)) & (l2);
+  always @(posedge $global_clock) begin
+    l0 <= !l0;
+    l1 <= !((!((!l0) & (l1))) & (!((l0) & (!l1))));
+    l2 <= !((!((!((l0) & (l1))) & (l2))) & (!(((l0) & (l1)) & (!l2))));
+  end
+endmodule

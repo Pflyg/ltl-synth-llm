@@ -1,0 +1,85 @@
+module full_arbiter(r_0, r_1, r_2, g_0, g_1, g_2);
+  input r_0;
+  input r_1;
+  input r_2;
+  output g_0;
+  output g_1;
+  output g_2;
+  reg [2:0] state;
+
+  assign g_0 = ((state == 5) && 1 || (state == 4) && 1 || (state == 3) && 1) ? 1 : 0;
+  assign g_1 = ((state == 2) && 1 || (state == 1) && 1) ? 1 : 0;
+  assign g_2 = ((state == 7) && 1 || (state == 6) && 1) ? 1 : 0;
+
+  initial
+  begin
+    state = 0;
+  end
+  always @($global_clock)
+  begin
+    case(state)
+      1: if (!(!(r_2 && !r_1 && r_0) && !(r_2 && r_1 && r_0)))
+           state = 6;
+         else if (!(!(r_2 && !r_1 && !r_0) && !(r_2 && r_1 && !r_0)))
+           state = 7;
+         else if (!(!(r_1 && r_0 && !r_2) && !(!r_1 && r_0 && !r_2)))
+           state = 3;
+         else 
+           state = 0;
+
+      2: if (r_0)
+           state = 6;
+         else 
+           state = 7;
+
+      4: 
+           state = 2;
+
+      5: if (r_2)
+           state = 2;
+         else 
+           state = 1;
+
+      0: if ((!r_1 && r_0 && !r_2))
+           state = 3;
+         else if ((r_2 && !r_1 && !r_0))
+           state = 7;
+         else if ((r_1 && r_0 && !r_2))
+           state = 5;
+         else if ((r_2 && r_1 && !r_0))
+           state = 2;
+         else if ((!r_2 && !r_0 && !r_1))
+           state = 0;
+         else if ((r_1 && !r_0 && !r_2))
+           state = 1;
+         else if ((r_2 && r_1 && r_0))
+           state = 4;
+         else 
+           state = 6;
+
+      6: if (!r_1)
+           state = 3;
+         else 
+           state = 5;
+
+      3: if (!(!(r_1 && r_0 && !r_2) && !(r_1 && !r_0 && !r_2)))
+           state = 1;
+         else if (!(!(!r_1 && r_0 && !r_2) && !(!r_2 && !r_0 && !r_1)))
+           state = 0;
+         else if ((r_2 && !r_1))
+           state = 7;
+         else 
+           state = 2;
+
+      7: if ((r_1 && !r_0))
+           state = 1;
+         else if ((!r_1 && r_0))
+           state = 3;
+         else if (!(!(r_2 && !r_1 && !r_0) && !(!r_2 && !r_0 && !r_1)))
+           state = 0;
+         else 
+           state = 5;
+
+    endcase
+  end
+endmodule

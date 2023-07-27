@@ -1,0 +1,50 @@
+module detector(r_0, r_1, r_2, r_3, g);
+  input r_0;
+  input r_1;
+  input r_2;
+  input r_3;
+  output g;
+  reg [1:0] state;
+
+  assign g = ((state == 3) && (r_2 && r_0) || (state == 0) && r_0 || (state == 1) && (r_3 && r_1 && r_2 && r_0) || (state == 2) && (r_3 && r_1 && r_2 && r_0)) ? 1 : 0;
+
+  initial
+  begin
+    state = 0;
+  end
+  always @($global_clock)
+  begin
+    case(state)
+      0: if ((!(r_3 && !r_1 && r_2) && r_0))
+           state = 2;
+         else if (!r_0)
+           state = 0;
+         else 
+           state = 1;
+
+      3: if (!r_2)
+           state = 3;
+         else if ((r_2 && !r_0))
+           state = 0;
+         else 
+           state = 2;
+
+      1: if ((!(r_3 && r_2) && r_1))
+           state = 3;
+         else if ((r_3 && r_1 && r_2 && !r_0))
+           state = 0;
+         else 
+           state = 1;
+
+      2: if ((r_3 && !r_2 && r_1))
+           state = 3;
+         else if (!(!(r_2 && r_0 && r_1) && r_3))
+           state = 2;
+         else if ((r_3 && !r_1))
+           state = 1;
+         else 
+           state = 0;
+
+    endcase
+  end
+endmodule

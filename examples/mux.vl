@@ -1,0 +1,10 @@
+module mux (
+    input [1:0] in,
+    input [0:0] select,
+    output reg out
+);
+
+wire [0:0] reversed = select;
+assign out = in[reversed];
+
+endmodule

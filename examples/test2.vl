@@ -1,0 +1,7 @@
+module mux(in_o, in_1,in_2,in_3,in_4,in_5,in_6,in_7,select_0,select_1,select_2,out);
+input in_0,in_1,in_2,in_3,in_4,in_5,in_6,in_7; 
+input select_0,select_1,select_2; 
+output out; 
+reg out; 
+assign out = (((!select_0 &  in_1) &  (!select_1 &  in_0)) | ((!select_0 &  in_3) &  (!select_2 &  in_2)) | ((select_0 &  in_5) &  (!select_2 &  in_4)) | ((select_0 &  in_7) &  (!select_1 & in_6))); 
+endmodule

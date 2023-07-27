@@ -1,0 +1,218 @@
+module full_arbiter(r_0, r_1, r_2, r_3, g_0, g_1, g_2, g_3);
+  input r_0;
+  input r_1;
+  input r_2;
+  input r_3;
+  output g_0;
+  output g_1;
+  output g_2;
+  output g_3;
+  reg [3:0] state;
+
+  assign g_0 = ((state == 9) && 1 || (state == 15) && 1 || (state == 4) && !(!(!(!r_1 && !r_0) && !r_2) && !r_3) || (state == 6) && !(!r_3 && r_2 && !r_1 && !r_0)) ? 1 : 0;
+  assign g_1 = ((state == 7) && !(r_2 && !r_0) || (state == 3) && (!(r_3 && !r_1) && !r_2) || (state == 5) && 1 || (state == 13) && 1 || (state == 11) && !(!(r_1 && !r_0 && !r_3 && !r_2) && !(r_3 && r_0)) || (state == 4) && (!(!(!r_1 && !r_0) && !r_2) && !r_3)) ? 1 : 0;
+  assign g_2 = ((state == 8) && (!(!r_3 && !r_1) && r_0) || (state == 11) && (!(r_1 && !r_0 && !r_3 && !r_2) && !(r_3 && r_0)) || (state == 10) && 1 || (state == 1) && 1 || (state == 6) && (!r_3 && r_2 && !r_1 && !r_0)) ? 1 : 0;
+  assign g_3 = ((state == 14) && 1 || (state == 3) && !(!(r_3 && !r_1) && !r_2) || (state == 2) && 1 || (state == 8) && !r_0 || (state == 12) && !(r_3 && !r_1 && r_2 && !r_0)) ? 1 : 0;
+
+  initial
+  begin
+    state = 0;
+  end
+  always @($global_clock)
+  begin
+    case(state)
+      0: if ((r_1 && r_0 && !r_3 && r_2))
+           state = 6;
+         else if ((!r_2 && !r_1 && r_0 && !r_3))
+           state = 15;
+         else if ((r_3 && r_1 && !r_2 && !r_0))
+           state = 7;
+         else if ((r_2 && r_0 && !r_3 && !r_1))
+           state = 9;
+         else if ((r_3 && r_0 && !r_1 && !r_2))
+           state = 14;
+         else if ((!r_2 && !r_0 && !r_3 && !r_1))
+           state = 0;
+         else if ((r_3 && r_0 && r_1 && !r_2))
+           state = 3;
+         else if ((r_1 && !r_0 && !r_3 && !r_2))
+           state = 5;
+         else if ((r_2 && r_1 && !r_0 && !r_3))
+           state = 11;
+         else if ((r_3 && !r_1 && !r_2 && !r_0))
+           state = 12;
+         else if ((!r_2 && r_1 && r_0 && !r_3))
+           state = 4;
+         else if ((r_2 && r_0 && r_3 && !r_1))
+           state = 10;
+         else if ((!r_3 && r_2 && !r_1 && !r_0))
+           state = 1;
+         else if ((r_3 && !r_0 && r_2 && r_1))
+           state = 13;
+         else if ((r_2 && r_1 && r_3 && r_0))
+           state = 2;
+         else 
+           state = 8;
+
+      2: 
+           state = 6;
+
+      15: if ((!r_3 && !r_1 && !r_2))
+           state = 0;
+         else if ((!r_3 && r_2 && !r_1))
+           state = 1;
+         else if ((r_3 && r_1 && !r_2))
+           state = 7;
+         else if ((r_3 && !r_1 && r_2))
+           state = 8;
+         else if ((r_2 && r_1 && r_3))
+           state = 13;
+         else if ((!r_2 && r_1 && !r_3))
+           state = 5;
+         else if ((r_2 && r_1 && !r_3))
+           state = 11;
+         else 
+           state = 12;
+
+      1: if ((!r_1 && !r_0 && !r_3))
+           state = 0;
+         else if ((r_3 && r_0 && !r_1))
+           state = 14;
+         else if ((r_3 && r_1 && !r_0))
+           state = 7;
+         else if ((r_3 && r_0 && r_1))
+           state = 3;
+         else if ((!r_3 && r_0 && r_1))
+           state = 4;
+         else if ((r_1 && !r_0 && !r_3))
+           state = 5;
+         else if ((r_3 && !r_0 && !r_1))
+           state = 12;
+         else 
+           state = 15;
+
+      8: if ((r_3 && r_0 && !r_1))
+           state = 14;
+         else if ((!r_3 && r_0 && !r_1))
+           state = 10;
+         else if ((r_1 && !r_0))
+           state = 11;
+         else if ((r_1 && r_0))
+           state = 3;
+         else 
+           state = 1;
+
+      14: if ((!r_2 && !r_1))
+           state = 15;
+         else if ((!r_2 && r_1))
+           state = 4;
+         else if (!(!(r_2 && r_0 && !r_1) && !(r_2 && !r_0 && !r_1)))
+           state = 9;
+         else 
+           state = 6;
+
+      12: if ((!r_2 && !r_0 && !r_3 && !r_1))
+           state = 0;
+         else if ((!r_3 && r_2 && !r_1 && !r_0))
+           state = 1;
+         else if ((r_3 && !r_1 && r_2 && !r_0))
+           state = 8;
+         else if ((!r_2 && r_1 && r_0))
+           state = 4;
+         else if ((r_1 && !r_0 && !r_2))
+           state = 5;
+         else if ((r_2 && r_0 && !r_1))
+           state = 9;
+         else if ((r_2 && r_1 && !r_0))
+           state = 11;
+         else if ((r_3 && !r_1 && !r_2 && !r_0))
+           state = 12;
+         else if ((!r_2 && !r_1 && r_0))
+           state = 15;
+         else 
+           state = 6;
+
+      11: if ((r_1 && !r_0 && !r_3 && !r_2))
+           state = 1;
+         else if ((!r_3 && r_0))
+           state = 4;
+         else if (!(!(!r_1 && !r_0 && !r_3) && !(r_2 && r_1 && !r_0 && !r_3)))
+           state = 5;
+         else if ((r_3 && !r_0))
+           state = 7;
+         else 
+           state = 10;
+
+      5: if ((!r_2 && !r_0 && !r_3))
+           state = 0;
+         else if ((r_2 && r_0 && r_3))
+           state = 10;
+         else if ((r_2 && !r_0 && !r_3))
+           state = 1;
+         else if ((r_3 && r_0 && !r_2))
+           state = 14;
+         else if ((r_2 && r_0 && !r_3))
+           state = 9;
+         else if ((r_3 && !r_0 && r_2))
+           state = 8;
+         else if ((r_3 && !r_0 && !r_2))
+           state = 12;
+         else 
+           state = 15;
+
+      13: if (!r_0)
+           state = 8;
+         else 
+           state = 10;
+
+      3: if (r_2)
+           state = 6;
+         else if ((!(r_3 && !r_1) && !r_2))
+           state = 14;
+         else 
+           state = 4;
+
+      9: if ((r_3 && r_1))
+           state = 13;
+         else if ((r_3 && !r_1))
+           state = 8;
+         else if (!(!(r_2 && r_1 && !r_3) && !(!r_2 && r_1 && !r_3)))
+           state = 11;
+         else 
+           state = 1;
+
+      6: if ((!(r_2 && !r_0 && !r_1) && !r_3))
+           state = 11;
+         else if (r_3)
+           state = 13;
+         else 
+           state = 4;
+
+      10: if (r_1)
+           state = 3;
+         else 
+           state = 14;
+
+      7: if ((r_2 && !r_0))
+           state = 13;
+         else if ((r_2 && r_0))
+           state = 10;
+         else if ((!r_2 && !r_0))
+           state = 12;
+         else 
+           state = 14;
+
+      4: if (!(!(r_3 && r_1 && !r_2) && !(!r_2 && !r_1 && r_3)))
+           state = 7;
+         else if ((!(!r_1 && !r_0) && !r_2 && !r_3))
+           state = 5;
+         else if ((r_3 && r_2))
+           state = 13;
+         else if ((!r_2 && !r_0 && !r_3 && !r_1))
+           state = 15;
+         else 
+           state = 9;
+
+    endcase
+  end
+endmodule
