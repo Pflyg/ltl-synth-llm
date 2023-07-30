@@ -31,11 +31,9 @@ def synthesize(
     """
 
     # generate bosy input
-    bosy_input = syfco.convert(
-        spec, "bosy", overwrite_params=overwrite_params, timeout=timeout
-    )
+    bosy_input = syfco.convert(spec, "bosy", overwrite_params=overwrite_params)
 
-    code = synthesize_bosy(input=bosy_input, target=target)
+    code = synthesize_bosy(input=bosy_input, target=target, timeout=timeout)
 
     # we have to explicitly change the module name from the default "fsm"
     return rename_module(code, module_name, "fsm") if target == "verilog" else code
@@ -74,7 +72,7 @@ def synthesize_bosy(input: str, target: str = "verilog", timeout=60):
             return container.logs(stderr=False)
         except:
             container.kill()
-            print("timeout")
+            raise TimeoutError()
 
 
 '''

@@ -1,0 +1,46 @@
+module collector_v2(finished_0, finished_1, finished_2, finished_3, allfinished);
+  input finished_0;
+  input finished_1;
+  input finished_2;
+  input finished_3;
+  output allfinished;
+  reg [1:0] state;
+
+  assign allfinished = ((state == 1) && finished_2) ? 1 : 0;
+
+  initial
+  begin
+    state = 0;
+  end
+  always @($global_clock)
+  begin
+    case(state)
+      0: if (!finished_0)
+           state = 0;
+         else 
+           state = 1;
+
+      2: if (!finished_3)
+           state = 2;
+         else if ((finished_1 && finished_0 && finished_3))
+           state = 1;
+         else if ((finished_3 && !finished_1))
+           state = 3;
+         else 
+           state = 0;
+
+      3: if (!finished_1)
+           state = 3;
+         else if ((finished_1 && finished_0))
+           state = 1;
+         else 
+           state = 0;
+
+      1: if (finished_2)
+           state = 2;
+         else 
+           state = 1;
+
+    endcase
+  end
+endmodule

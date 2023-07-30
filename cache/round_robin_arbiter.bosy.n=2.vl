@@ -1,0 +1,23 @@
+module round_robin_arbiter(r_0, r_1, g_0, g_1);
+  input r_0;
+  input r_1;
+  output g_0;
+  output g_1;
+  reg [0:0] state;
+
+  assign g_0 = ((state == 0) && !(r_1 && !r_0)) ? 1 : 0;
+  assign g_1 = ((state == 0) && (r_1 && !r_0)) ? 1 : 0;
+
+  initial
+  begin
+    state = 0;
+  end
+  always @($global_clock)
+  begin
+    case(state)
+      0: 
+           state = 0;
+
+    endcase
+  end
+endmodule

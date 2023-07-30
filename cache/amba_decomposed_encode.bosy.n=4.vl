@@ -1,0 +1,59 @@
+module amba_decomposed_encode(hready, hgrant_0, hgrant_1, hgrant_2, hgrant_3, hmaster_0, hmaster_1);
+  input hready;
+  input hgrant_0;
+  input hgrant_1;
+  input hgrant_2;
+  input hgrant_3;
+  output hmaster_0;
+  output hmaster_1;
+  reg [1:0] state;
+
+  assign hmaster_0 = ((state == 3) && !(!(hgrant_3 && !hgrant_2 && !hgrant_1 && !hgrant_0) && !(hgrant_1 && !hgrant_0 && !hgrant_3 && !hgrant_2) && !(!hgrant_3 && hgrant_2 && !hgrant_1 && !hgrant_0) && !(!hgrant_1 && hgrant_0 && !hgrant_3 && !hgrant_2)) || (state == 1) && !(!(hgrant_3 && !hgrant_2 && !hgrant_1 && !hgrant_0) && !(hgrant_1 && !hgrant_0 && !hgrant_3 && !hgrant_2) && !(!hgrant_3 && hgrant_2 && !hgrant_1 && !hgrant_0) && !(!hgrant_1 && hgrant_0 && !hgrant_3 && !hgrant_2))) ? 1 : 0;
+  assign hmaster_1 = ((state == 2) && !(!(hgrant_3 && !hgrant_2 && !hgrant_1 && !hgrant_0) && !(hgrant_1 && !hgrant_0 && !hgrant_3 && !hgrant_2) && !(!hgrant_3 && hgrant_2 && !hgrant_1 && !hgrant_0) && !(!hgrant_1 && hgrant_0 && !hgrant_3 && !hgrant_2)) || (state == 1) && !(!(hgrant_3 && !hgrant_2 && !hgrant_1 && !hgrant_0) && !(hgrant_1 && !hgrant_0 && !hgrant_3 && !hgrant_2) && !(!hgrant_3 && hgrant_2 && !hgrant_1 && !hgrant_0) && !(!hgrant_1 && hgrant_0 && !hgrant_3 && !hgrant_2))) ? 1 : 0;
+
+  initial
+  begin
+    state = 0;
+  end
+  always @($global_clock)
+  begin
+    case(state)
+      1: if ((hgrant_1 && !hgrant_0 && !hgrant_3 && !hgrant_2 && hready))
+           state = 3;
+         else if (!(!(!hgrant_1 && hgrant_0 && !hgrant_3 && !hgrant_2 && hready) && !(!(hgrant_3 && !hgrant_2 && !hgrant_1 && !hgrant_0) && !(hgrant_1 && !hgrant_0 && !hgrant_3 && !hgrant_2) && !(!hgrant_3 && hgrant_2 && !hgrant_1 && !hgrant_0) && !(!hgrant_1 && hgrant_0 && !hgrant_3 && !hgrant_2))))
+           state = 0;
+         else if ((!(!hgrant_1 && hgrant_0 && !hgrant_3 && !hgrant_2) && hready && !hgrant_3 && hgrant_2 && !hgrant_1 && !hgrant_0))
+           state = 2;
+         else 
+           state = 1;
+
+      0: if (!(!(!(!hgrant_1 && hgrant_0 && !hgrant_3 && !hgrant_2) && hready && hgrant_3 && !hgrant_2 && !hgrant_1 && !hgrant_0) && !(!(hgrant_3 && !hgrant_2 && !hgrant_1 && !hgrant_0) && !(hgrant_1 && !hgrant_0 && !hgrant_3 && !hgrant_2) && !(!hgrant_3 && hgrant_2 && !hgrant_1 && !hgrant_0) && !(!hgrant_1 && hgrant_0 && !hgrant_3 && !hgrant_2))))
+           state = 1;
+         else if ((hgrant_1 && !hgrant_0 && !hgrant_3 && !hgrant_2 && hready))
+           state = 3;
+         else if ((!(!hgrant_1 && hgrant_0 && !hgrant_3 && !hgrant_2) && hready && !hgrant_3 && hgrant_2 && !hgrant_1 && !hgrant_0))
+           state = 2;
+         else 
+           state = 0;
+
+      2: if (!(!(!hgrant_1 && hgrant_0 && !hgrant_3 && !hgrant_2 && hready) && !(!(hgrant_3 && !hgrant_2 && !hgrant_1 && !hgrant_0) && !(hgrant_1 && !hgrant_0 && !hgrant_3 && !hgrant_2) && !(!hgrant_3 && hgrant_2 && !hgrant_1 && !hgrant_0) && !(!hgrant_1 && hgrant_0 && !hgrant_3 && !hgrant_2))))
+           state = 0;
+         else if ((hgrant_1 && !hgrant_0 && !hgrant_3 && !hgrant_2 && hready))
+           state = 3;
+         else if ((!(!hgrant_1 && hgrant_0 && !hgrant_3 && !hgrant_2) && hready && hgrant_3 && !hgrant_2 && !hgrant_1 && !hgrant_0))
+           state = 1;
+         else 
+           state = 2;
+
+      3: if ((!hgrant_1 && hgrant_0 && !hgrant_3 && !hgrant_2 && hready))
+           state = 0;
+         else if (!(!(!(!hgrant_1 && hgrant_0 && !hgrant_3 && !hgrant_2) && hready && !hgrant_3 && hgrant_2 && !hgrant_1 && !hgrant_0) && !(!(hgrant_3 && !hgrant_2 && !hgrant_1 && !hgrant_0) && !(hgrant_1 && !hgrant_0 && !hgrant_3 && !hgrant_2) && !(!hgrant_3 && hgrant_2 && !hgrant_1 && !hgrant_0) && !(!hgrant_1 && hgrant_0 && !hgrant_3 && !hgrant_2))))
+           state = 2;
+         else if ((!(!hgrant_1 && hgrant_0 && !hgrant_3 && !hgrant_2) && hready && hgrant_3 && !hgrant_2 && !hgrant_1 && !hgrant_0))
+           state = 1;
+         else 
+           state = 3;
+
+    endcase
+  end
+endmodule

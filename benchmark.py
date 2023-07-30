@@ -22,25 +22,6 @@ class BenchmarkEncoder(json.JSONEncoder):
         return o
 
 
-cache_dir = "./cache"
-
-
-def cache_benchmark_code(bm, impl, func, additional_discriminator=""):
-    """
-    Synthesizing LTL is expensive
-    """
-    # make sure the directory exists
-    os.makedirs(cache_dir, exist_ok=True)
-    filename = f'{bm.name}.{additional_discriminator + "." if additional_discriminator else ""}{".".join([k + "=" + str(v) for (k, v) in impl["params"].items()])}.vl'
-    filepath = os.path.join(cache_dir, filename)
-    # does file already exist?
-    if os.path.isfile(filepath):
-        return read_file(filepath)
-    contents = func()  # calculate
-    write_file(filepath, contents)
-    return contents
-
-
 class Benchmark:
     def __init__(self, props: dict, base_dir=""):
         self.name = props["name"]
@@ -74,50 +55,90 @@ class Benchmark:
                 raise Exception("Could not verify all implementations")
 
 
+cache_dir = "./cache"
+
+
+def cache_benchmark_code(bm, impl, func, additional_discriminator=""):
+    """
+    Synthesizing LTL is expensive
+    """
+    # make sure the directory exists
+    os.makedirs(cache_dir, exist_ok=True)
+    filename = f'{bm.name}.{additional_discriminator + "." if additional_discriminator else ""}{".".join([k + "=" + str(v) for (k, v) in impl["params"].items()])}.vl'
+    filepath = os.path.join(cache_dir, filename)
+    # does file already exist?
+    if os.path.isfile(filepath):
+        contents = read_file(filepath)
+        if contents == "timeout":
+            raise TimeoutError()  # if we know that its gonna timeout, there's no sense in building it from scratch
+        return contents
+
+    try:
+        contents = func()  # calculate
+    except TimeoutError:
+        write_file(filepath, "timeout")  # save when it timeouts
+        raise TimeoutError()
+    write_file(filepath, contents)
+    return contents
+
+
 def build_prompt(
-    bm: Benchmark, params=None, mode="self", template=prompting.DefaultPromptTemplate
+    bm: Benchmark,
+    params=None,
+    mode="self",
+    template=prompting.DefaultPromptTemplate,
+    timeout=120,
 ):
     prompt = template()
     spec = read_file(bm.specification)
     if params == None:
         params = bm.generate_params
-
-    if mode != "none":
-        for impl in bm.implementations:
-            match mode:
-                case "self":
-                    impl_code = read_file(
-                        os.path.join(os.path.dirname(bm.specification), impl["file"])
-                    )
-                case "bosy":
-                    impl_code = cache_benchmark_code(
-                        bm=bm,
-                        impl=impl,
-                        additional_discriminator=mode,
-                        func=lambda: bosy.synthesize(
-                            spec, overwrite_params=impl["params"], module_name=bm.name
+        if mode != "none":
+            for impl in bm.implementations:
+                match mode:
+                    case "self":
+                        impl_code = read_file(
+                            os.path.join(
+                                os.path.dirname(bm.specification), impl["file"]
+                            )
+                        )
+                    case "bosy":
+                        impl_code = cache_benchmark_code(
+                            bm=bm,
+                            impl=impl,
+                            additional_discriminator=mode,
+                            func=lambda: bosy.synthesize(
+                                spec,
+                                overwrite_params=impl["params"],
+                                module_name=bm.name,
+                                timeout=timeout,
+                            ),
+                        )
+                    case "strix":
+                        impl_code = cache_benchmark_code(
+                            bm=bm,
+                            impl=impl,
+                            additional_discriminator=mode,
+                            func=lambda: strix.synthesize(
+                                spec,
+                                overwrite_params=impl["params"],
+                                module_name=bm.name,
+                                timeout=timeout,
+                            ),
+                        )
+                    case _:
+                        raise Exception("Unsupported mode '" + mode + "'")
+                prompt.add_example(
+                    {
+                        "SPEC": syfco.convert(
+                            spec, "ltl", overwrite_params=impl["params"]
                         ),
-                    )
-                case "strix":
-                    impl_code = cache_benchmark_code(
-                        bm=bm,
-                        impl=impl,
-                        additional_discriminator=mode,
-                        func=lambda: strix.synthesize(
-                            spec, overwrite_params=impl["params"], module_name=bm.name
+                        "IMPL": impl_code,
+                        "PARAMS": " and ".join(
+                            [k + "=" + str(v) for (k, v) in impl["params"].items()]
                         ),
-                    )
-                case _:
-                    raise Exception("Unsupported mode '" + mode + "'")
-            prompt.add_example(
-                {
-                    "SPEC": syfco.convert(spec, "ltl", overwrite_params=impl["params"]),
-                    "IMPL": impl_code,
-                    "PARAMS": " and ".join(
-                        [k + "=" + str(v) for (k, v) in impl["params"].items()]
-                    ),
-                }
-            )
+                    }
+                )
     return prompt.build_prompt(
         {"SPEC": syfco.convert(spec, "ltl", overwrite_params=params)}
     )

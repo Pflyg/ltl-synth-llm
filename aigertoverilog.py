@@ -33,15 +33,13 @@ def build_expression(node: Node) -> str:
             raise Exception("Unknown Node type in AIGER graph")
 
 
-"""
-Takes aiger code and converts it to a verilog module with the same name
-"""
-
-
 def aiger_to_verilog(aiger_code: str, module_name: str) -> str:
+    """
+    Takes aiger code and converts it to a verilog module with the same name
+    """
     aig: AIG = aiger.parse(aiger_code)
 
-    # Want the symbols to be sorted in a deterministic way
+    # Want the symbols to be sorted in a deterministic way. Natsort just
     inputs = natsorted(aig.inputs)
     outputs = natsorted(aig.outputs)
     latches = natsorted(aig.latches)
@@ -72,6 +70,7 @@ initial begin
 end"""
     )
 
+    # output definitions section
     output_definitions = "\n".join(
         [f"assign {out} = {build_expression(aig.node_map[out])};" for out in outputs]
     )
@@ -104,6 +103,7 @@ always @(posedge $global_clock) begin
 end"""
     )
 
+    # putting all parts together
     complete_module = f"""module {module_name} (
 {module_ports}
 );

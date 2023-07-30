@@ -1,0 +1,202 @@
+module collector_v1(finished_0, finished_1, finished_2, finished_3, allfinished);
+  input finished_0;
+  input finished_1;
+  input finished_2;
+  input finished_3;
+  output allfinished;
+  reg [3:0] state;
+
+  assign allfinished = ((state == 10) && (finished_2 && finished_1 && finished_3) || (state == 14) && finished_2 || (state == 9) && (finished_3 && finished_0) || (state == 3) && finished_3 || (state == 8) && (finished_2 && finished_0 && finished_3) || (state == 1) && (finished_1 && finished_0 && finished_3) || (state == 0) && (finished_1 && finished_0) || (state == 5) && (finished_3 && finished_1) || (state == 12) && (finished_3 && finished_1 && finished_2 && finished_0) || (state == 6) && (finished_1 && finished_0 && finished_2) || (state == 11) && (finished_2 && finished_0) || (state == 2) && (finished_2 && finished_1) || (state == 13) && finished_3 || (state == 15) && finished_1 || (state == 4) && finished_0 || (state == 7) && (finished_3 && finished_2)) ? 1 : 0;
+
+  initial
+  begin
+    state = 0;
+  end
+  always @($global_clock)
+  begin
+    case(state)
+      5: if ((!(!finished_2 && !finished_0) && !finished_3 && finished_1))
+           state = 13;
+         else if ((!finished_3 && !finished_1))
+           state = 5;
+         else if ((finished_3 && finished_1))
+           state = 12;
+         else if ((finished_3 && !finished_1))
+           state = 15;
+         else 
+           state = 3;
+
+      10: if ((finished_2 && finished_1 && finished_3))
+           state = 12;
+         else if ((finished_3 && !finished_1 && !finished_2))
+           state = 2;
+         else if ((finished_2 && !finished_1 && !finished_3))
+           state = 5;
+         else if ((!finished_2 && !finished_1 && !finished_3))
+           state = 10;
+         else if ((finished_3 && finished_1 && !finished_2))
+           state = 14;
+         else if ((finished_2 && finished_1 && !finished_3))
+           state = 13;
+         else if ((!finished_2 && finished_1 && !finished_3))
+           state = 7;
+         else 
+           state = 15;
+
+      11: if ((!finished_2 && !finished_0))
+           state = 11;
+         else if ((!finished_2 && finished_0))
+           state = 14;
+         else if ((finished_2 && !finished_0))
+           state = 4;
+         else 
+           state = 12;
+
+      12: if ((!finished_3 && finished_2 && finished_1 && !finished_0))
+           state = 9;
+         else if ((!finished_3 && finished_2 && !finished_1 && !finished_0))
+           state = 1;
+         else if ((finished_3 && !finished_1 && !finished_0 && !finished_2))
+           state = 6;
+         else if ((finished_3 && finished_1 && !finished_0 && !finished_2))
+           state = 11;
+         else if ((finished_3 && finished_2 && finished_1 && !finished_0))
+           state = 4;
+         else if (!(!(!finished_2 && !finished_1 && !finished_3 && !finished_0) && !(finished_3 && finished_1 && finished_2 && finished_0)))
+           state = 12;
+         else if ((finished_2 && !finished_1 && finished_3 && finished_0))
+           state = 15;
+         else if ((!finished_2 && !finished_1 && finished_3 && finished_0))
+           state = 2;
+         else if ((!finished_2 && finished_1 && finished_3 && finished_0))
+           state = 14;
+         else if ((!finished_3 && !finished_0 && !finished_2 && finished_1))
+           state = 8;
+         else if ((!finished_3 && finished_2 && finished_1 && finished_0))
+           state = 3;
+         else if ((!finished_3 && !finished_1 && !finished_2 && finished_0))
+           state = 10;
+         else if ((!finished_3 && !finished_1 && finished_2 && finished_0))
+           state = 5;
+         else if ((finished_1 && finished_0 && !finished_2 && !finished_3))
+           state = 7;
+         else 
+           state = 0;
+
+      13: if (finished_3)
+           state = 12;
+         else if ((!(!finished_2 && !finished_0) && !finished_3))
+           state = 13;
+         else 
+           state = 3;
+
+      7: if (!(!(finished_3 && finished_0 && !finished_2) && !(!finished_2 && !finished_0 && finished_3)))
+           state = 14;
+         else if ((finished_3 && finished_2))
+           state = 12;
+         else if (!(!(!finished_2 && finished_0 && !finished_3) && !(!finished_2 && !finished_0 && !finished_3)))
+           state = 7;
+         else 
+           state = 3;
+
+      15: if (!finished_1)
+           state = 15;
+         else 
+           state = 12;
+
+      2: if ((!finished_2 && !finished_1))
+           state = 2;
+         else if ((!finished_2 && finished_1))
+           state = 14;
+         else if ((finished_2 && !finished_1))
+           state = 15;
+         else 
+           state = 12;
+
+      0: if ((!finished_1 && !finished_0))
+           state = 0;
+         else if (!(!(finished_2 && finished_0 && !finished_1) && !(!finished_2 && finished_0 && !finished_1)))
+           state = 15;
+         else if ((finished_1 && !finished_0))
+           state = 4;
+         else 
+           state = 12;
+
+      3: if (!finished_3)
+           state = 3;
+         else 
+           state = 12;
+
+      14: if (finished_2)
+           state = 12;
+         else 
+           state = 14;
+
+      6: if ((finished_1 && finished_0 && finished_2))
+           state = 12;
+         else if ((finished_1 && !finished_0 && !finished_2))
+           state = 11;
+         else if ((finished_2 && finished_1 && !finished_0))
+           state = 4;
+         else if ((!finished_2 && finished_0 && !finished_1))
+           state = 2;
+         else if ((finished_1 && finished_0 && !finished_2))
+           state = 14;
+         else if ((finished_2 && !finished_0 && !finished_1))
+           state = 0;
+         else if ((!finished_1 && !finished_0 && !finished_2))
+           state = 6;
+         else 
+           state = 15;
+
+      9: if ((!finished_3 && finished_0))
+           state = 3;
+         else if ((finished_3 && finished_0))
+           state = 12;
+         else if ((!finished_3 && !finished_0))
+           state = 9;
+         else 
+           state = 4;
+
+      4: if (!finished_0)
+           state = 4;
+         else 
+           state = 12;
+
+      8: if ((finished_2 && finished_0 && finished_3))
+           state = 12;
+         else if ((!finished_2 && !finished_0 && finished_3))
+           state = 11;
+         else if ((finished_2 && !finished_0 && finished_3))
+           state = 4;
+         else if ((!finished_2 && !finished_0 && !finished_3))
+           state = 8;
+         else if ((finished_3 && finished_0 && !finished_2))
+           state = 14;
+         else if ((finished_2 && !finished_0 && !finished_3))
+           state = 9;
+         else if ((!finished_2 && finished_0 && !finished_3))
+           state = 7;
+         else 
+           state = 13;
+
+      1: if ((finished_1 && finished_0 && finished_3))
+           state = 12;
+         else if ((!finished_1 && !finished_0 && !finished_3))
+           state = 1;
+         else if ((finished_3 && finished_1 && !finished_0))
+           state = 4;
+         else if ((!finished_3 && finished_0 && !finished_1))
+           state = 5;
+         else if ((finished_3 && !finished_1 && !finished_0))
+           state = 0;
+         else if ((finished_1 && !finished_0 && !finished_3))
+           state = 9;
+         else if ((finished_1 && finished_0 && !finished_3))
+           state = 13;
+         else 
+           state = 15;
+
+    endcase
+  end
+endmodule

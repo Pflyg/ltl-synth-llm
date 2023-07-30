@@ -1,0 +1,46 @@
+module simple_arbiter_enc(request_0, request_1, grant_0, grant_1, grant_2);
+  input request_0;
+  input request_1;
+  output grant_0;
+  output grant_1;
+  output grant_2;
+  reg [2:0] state;
+
+  assign grant_0 = ((state == 2) && 1 || (state == 6) && 1 || (state == 7) && 1 || (state == 4) && !(request_1 && !request_0)) ? 1 : 0;
+  assign grant_1 = ((state == 0) && 1 || (state == 1) && 1 || (state == 2) && 1 || (state == 3) && (request_1 && !request_0) || (state == 7) && 1 || (state == 4) && (request_1 && !request_0)) ? 1 : 0;
+  assign grant_2 = (0) ? 1 : 0;
+
+  initial
+  begin
+    state = 0;
+  end
+  always @($global_clock)
+  begin
+    case(state)
+      3: 
+           state = 7;
+
+      2: 
+           state = 6;
+
+      6: 
+           state = 5;
+
+      7: 
+           state = 2;
+
+      5: 
+           state = 1;
+
+      4: 
+           state = 3;
+
+      1: 
+           state = 7;
+
+      0: 
+           state = 6;
+
+    endcase
+  end
+endmodule

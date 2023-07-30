@@ -1,0 +1,67 @@
+module prioritized_arbiter(r_m, r_0, r_1, r_2, r_3, g_m, g_0, g_1, g_2, g_3);
+  input r_m;
+  input r_0;
+  input r_1;
+  input r_2;
+  input r_3;
+  output g_m;
+  output g_0;
+  output g_1;
+  output g_2;
+  output g_3;
+  reg [2:0] state;
+
+  assign g_m = ((state == 0) && 1 || (state == 3) && 1 || (state == 5) && 1 || (state == 4) && 1) ? 1 : 0;
+  assign g_0 = ((state == 7) && 1) ? 1 : 0;
+  assign g_1 = ((state == 2) && 1) ? 1 : 0;
+  assign g_2 = ((state == 1) && 1) ? 1 : 0;
+  assign g_3 = ((state == 6) && 1) ? 1 : 0;
+
+  initial
+  begin
+    state = 0;
+  end
+  always @($global_clock)
+  begin
+    case(state)
+      7: if (!r_m)
+           state = 1;
+         else 
+           state = 3;
+
+      0: if (r_m)
+           state = 0;
+         else 
+           state = 6;
+
+      4: if (!r_m)
+           state = 2;
+         else 
+           state = 4;
+
+      2: 
+           state = 0;
+
+      1: if (r_m)
+           state = 4;
+         else 
+           state = 2;
+
+      5: if (r_m)
+           state = 5;
+         else 
+           state = 7;
+
+      6: if (!r_m)
+           state = 7;
+         else 
+           state = 5;
+
+      3: if (!r_m)
+           state = 1;
+         else 
+           state = 3;
+
+    endcase
+  end
+endmodule

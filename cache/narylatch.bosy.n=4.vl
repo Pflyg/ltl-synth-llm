@@ -1,0 +1,555 @@
+module narylatch(upd, in_0, in_1, in_2, in_3, out_0, out_1, out_2, out_3);
+  input upd;
+  input in_0;
+  input in_1;
+  input in_2;
+  input in_3;
+  output out_0;
+  output out_1;
+  output out_2;
+  output out_3;
+  reg [3:0] state;
+
+  assign out_0 = ((state == 6) && !(!(!in_1 && in_0 && upd && !(!in_3 && upd)) && !(!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)) && !(!(!in_2 && upd) && !(in_3 && upd) && upd && in_0) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && in_0 && upd) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && upd) || (state == 7) && !(!(!in_1 && in_0 && upd && !(!in_3 && upd)) && !(!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)) && !(!(!in_2 && upd) && !(in_3 && upd) && upd && in_0) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && in_0 && upd) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && upd) || (state == 9) && !(!(!in_1 && in_0 && upd && !(!in_3 && upd)) && !(!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)) && !(!(!in_2 && upd) && !(in_3 && upd) && upd && in_0) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && in_0 && upd) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && upd) || (state == 0) && !(!(!in_1 && in_0 && upd && !(!in_3 && upd)) && !(!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)) && !(!(!in_2 && upd) && !(in_3 && upd) && upd && in_0) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && in_0 && upd) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd)) || (state == 2) && !(!(!in_1 && in_0 && upd && !(!in_3 && upd)) && !(!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)) && !(!(!in_2 && upd) && !(in_3 && upd) && upd && in_0) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && in_0 && upd) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd)) || (state == 1) && !(!(!in_1 && in_0 && upd && !(!in_3 && upd)) && !(!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)) && !(!(!in_2 && upd) && !(in_3 && upd) && upd && in_0) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && in_0 && upd) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && upd) || (state == 12) && !(!(!in_1 && in_0 && upd && !(!in_3 && upd)) && !(!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)) && !(!(!in_2 && upd) && !(in_3 && upd) && upd && in_0) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && in_0 && upd) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && upd) || (state == 5) && !(!(!in_1 && in_0 && upd && !(!in_3 && upd)) && !(!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)) && !(!(!in_2 && upd) && !(in_3 && upd) && upd && in_0) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && in_0 && upd) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd)) || (state == 14) && !(!(!in_1 && in_0 && upd && !(!in_3 && upd)) && !(!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)) && !(!(!in_2 && upd) && !(in_3 && upd) && upd && in_0) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && in_0 && upd) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd)) || (state == 15) && !(!(!in_1 && in_0 && upd && !(!in_3 && upd)) && !(!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)) && !(!(!in_2 && upd) && !(in_3 && upd) && upd && in_0) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && in_0 && upd) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && upd) || (state == 10) && !(!(!in_1 && in_0 && upd && !(!in_3 && upd)) && !(!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)) && !(!(!in_2 && upd) && !(in_3 && upd) && upd && in_0) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && in_0 && upd) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd)) || (state == 13) && !(!(!in_1 && in_0 && upd && !(!in_3 && upd)) && !(!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)) && !(!(!in_2 && upd) && !(in_3 && upd) && upd && in_0) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && in_0 && upd) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd)) || (state == 8) && !(!(!in_1 && in_0 && upd && !(!in_3 && upd)) && !(!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)) && !(!(!in_2 && upd) && !(in_3 && upd) && upd && in_0) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && in_0 && upd) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd)) || (state == 11) && !(!(!in_1 && in_0 && upd && !(!in_3 && upd)) && !(!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)) && !(!(!in_2 && upd) && !(in_3 && upd) && upd && in_0) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && in_0 && upd) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && upd) || (state == 4) && !(!(!in_1 && in_0 && upd && !(!in_3 && upd)) && !(!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)) && !(!(!in_2 && upd) && !(in_3 && upd) && upd && in_0) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && in_0 && upd) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && upd) || (state == 3) && !(!(!in_1 && in_0 && upd && !(!in_3 && upd)) && !(!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)) && !(!(!in_2 && upd) && !(in_3 && upd) && upd && in_0) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && in_0 && upd) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd))) ? 1 : 0;
+  assign out_1 = ((state == 6) && !(!(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && in_0 && upd) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && !(in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && !(in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!(!in_1 && !in_0) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd) && !(!(!in_3 && upd) && !(!in_2 && upd) && !in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && !(in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && upd && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd) && !(in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!in_2 && upd) && !(in_3 && upd)) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd)) || (state == 7) && !(!(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && in_0 && upd) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && !(in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && !(in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!(!in_1 && !in_0) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd) && !(!(!in_3 && upd) && !(!in_2 && upd) && !in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && !(in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && upd && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd) && !(in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!in_2 && upd) && !(in_3 && upd)) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd) && upd) || (state == 9) && !(!(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && in_0 && upd) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && !(in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && !(in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!(!in_1 && !in_0) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd) && !(!(!in_3 && upd) && !(!in_2 && upd) && !in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && !(in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && upd && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd) && !(in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!in_2 && upd) && !(in_3 && upd)) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd) && upd) || (state == 0) && !(!(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && in_0 && upd) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && !(in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && !(in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!(!in_1 && !in_0) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd) && !(!(!in_3 && upd) && !(!in_2 && upd) && !in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && !(in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && upd && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd) && !(in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!in_2 && upd) && !(in_3 && upd)) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd) && upd) || (state == 2) && !(!(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && in_0 && upd) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && !(in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && !(in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!(!in_1 && !in_0) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd) && !(!(!in_3 && upd) && !(!in_2 && upd) && !in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && !(in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && upd && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd) && !(in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!in_2 && upd) && !(in_3 && upd)) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd) && upd) || (state == 1) && !(!(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && in_0 && upd) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && !(in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && !(in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!(!in_1 && !in_0) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd) && !(!(!in_3 && upd) && !(!in_2 && upd) && !in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && !(in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && upd && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd) && !(in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!in_2 && upd) && !(in_3 && upd)) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd) && upd) || (state == 12) && !(!(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && in_0 && upd) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && !(in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && !(in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!(!in_1 && !in_0) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd) && !(!(!in_3 && upd) && !(!in_2 && upd) && !in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && !(in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && upd && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd) && !(in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!in_2 && upd) && !(in_3 && upd)) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd) && upd) || (state == 5) && !(!(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && in_0 && upd) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && !(in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && !(in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!(!in_1 && !in_0) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd) && !(!(!in_3 && upd) && !(!in_2 && upd) && !in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && !(in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && upd && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd) && !(in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!in_2 && upd) && !(in_3 && upd)) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd) && upd) || (state == 14) && !(!(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && in_0 && upd) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && !(in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && !(in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!(!in_1 && !in_0) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd) && !(!(!in_3 && upd) && !(!in_2 && upd) && !in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && !(in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && upd && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd) && !(in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!in_2 && upd) && !(in_3 && upd)) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd)) || (state == 15) && !(!(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && in_0 && upd) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && !(in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && !(in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!(!in_1 && !in_0) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd) && !(!(!in_3 && upd) && !(!in_2 && upd) && !in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && !(in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && upd && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd) && !(in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!in_2 && upd) && !(in_3 && upd)) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd)) || (state == 10) && !(!(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && in_0 && upd) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && !(in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && !(in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!(!in_1 && !in_0) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd) && !(!(!in_3 && upd) && !(!in_2 && upd) && !in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && !(in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && upd && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd) && !(in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!in_2 && upd) && !(in_3 && upd)) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd)) || (state == 13) && !(!(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && in_0 && upd) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && !(in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && !(in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!(!in_1 && !in_0) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd) && !(!(!in_3 && upd) && !(!in_2 && upd) && !in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && !(in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && upd && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd) && !(in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!in_2 && upd) && !(in_3 && upd)) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd)) || (state == 8) && !(!(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && in_0 && upd) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && !(in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && !(in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!(!in_1 && !in_0) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd) && !(!(!in_3 && upd) && !(!in_2 && upd) && !in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && !(in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && upd && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd) && !(in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!in_2 && upd) && !(in_3 && upd)) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd) && upd) || (state == 11) && !(!(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && in_0 && upd) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && !(in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && !(in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!(!in_1 && !in_0) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd) && !(!(!in_3 && upd) && !(!in_2 && upd) && !in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && !(in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && upd && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd) && !(in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!in_2 && upd) && !(in_3 && upd)) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd)) || (state == 4) && !(!(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && in_0 && upd) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && !(in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && !(in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!(!in_1 && !in_0) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd) && !(!(!in_3 && upd) && !(!in_2 && upd) && !in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && !(in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && upd && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd) && !(in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!in_2 && upd) && !(in_3 && upd)) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd)) || (state == 3) && !(!(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && in_0 && upd) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && !(in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && !(in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!(!in_1 && !in_0) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd) && !(!(!in_3 && upd) && !(!in_2 && upd) && !in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && !(in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && upd && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd) && !(in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!in_2 && upd) && !(in_3 && upd)) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd))) ? 1 : 0;
+  assign out_2 = ((state == 6) && (in_2 && upd) || (state == 7) && (in_2 && upd) || (state == 9) && !(!in_2 && upd) || (state == 0) && !(!in_2 && upd) || (state == 2) && !(!in_2 && upd) || (state == 1) && (in_2 && upd) || (state == 12) && !(!in_2 && upd) || (state == 5) && (in_2 && upd) || (state == 14) && (in_2 && upd) || (state == 15) && !(!in_2 && upd) || (state == 10) && !(!in_2 && upd) || (state == 13) && (in_2 && upd) || (state == 8) && (in_2 && upd) || (state == 11) && (in_2 && upd) || (state == 4) && !(!in_2 && upd) || (state == 3) && !(!in_2 && upd)) ? 1 : 0;
+  assign out_3 = ((state == 6) && !(!in_3 && upd) || (state == 7) && !(!in_3 && upd) || (state == 9) && !(!in_3 && upd) || (state == 0) && (in_3 && upd) || (state == 2) && !(!in_3 && upd) || (state == 1) && (in_3 && upd) || (state == 12) && (in_3 && upd) || (state == 5) && !(!in_3 && upd) || (state == 14) && (in_3 && upd) || (state == 15) && (in_3 && upd) || (state == 10) && !(!in_3 && upd) || (state == 13) && !(!in_3 && upd) || (state == 8) && (in_3 && upd) || (state == 11) && (in_3 && upd) || (state == 4) && !(!in_3 && upd) || (state == 3) && (in_3 && upd)) ? 1 : 0;
+
+  initial
+  begin
+    state = 0;
+  end
+  always @($global_clock)
+  begin
+    case(state)
+      11: if ((!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd))
+           state = 2;
+         else if ((in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)))
+           state = 5;
+         else if (!(!(!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)) && upd))
+           state = 11;
+         else if ((!(!in_3 && upd) && !(!in_2 && upd) && in_1 && in_0 && upd))
+           state = 9;
+         else if ((!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd))
+           state = 7;
+         else if ((!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd))
+           state = 1;
+         else if ((!in_1 && !in_0 && upd && in_2 && in_3))
+           state = 10;
+         else if ((!in_1 && !in_0 && upd && in_2 && !in_3))
+           state = 3;
+         else if ((!in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)))
+           state = 15;
+         else if ((!(!in_1 && !in_0) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd) && !(!(!in_3 && upd) && !(!in_2 && upd) && !in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && !(in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && upd && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd) && !(in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!in_2 && upd) && !(in_3 && upd)))
+           state = 0;
+         else if ((!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd))
+           state = 8;
+         else if ((!(!in_3 && upd) && !(!in_2 && upd) && !in_1 && in_0 && upd))
+           state = 4;
+         else if ((!in_1 && in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)))
+           state = 6;
+         else if ((!in_1 && !in_0 && !in_2 && upd && !(!in_3 && upd)))
+           state = 13;
+         else if ((in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)))
+           state = 12;
+         else 
+           state = 14;
+
+      0: if ((!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd))
+           state = 7;
+         else if ((!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd))
+           state = 8;
+         else if ((!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)))
+           state = 11;
+         else if ((!in_1 && in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)))
+           state = 6;
+         else if ((in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)))
+           state = 12;
+         else if ((!in_1 && !in_0 && !in_2 && upd && !in_3))
+           state = 14;
+         else if ((!in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)))
+           state = 15;
+         else if (!(!(!(!in_1 && !in_0) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd) && !(!(!in_3 && upd) && !(!in_2 && upd) && !in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && !(in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && upd && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd) && !(in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!in_2 && upd) && !(in_3 && upd)) && upd))
+           state = 0;
+         else if ((!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd))
+           state = 1;
+         else if ((!in_1 && !in_0 && upd && in_2 && in_3))
+           state = 10;
+         else if ((!(!in_3 && upd) && !(!in_2 && upd) && in_1 && in_0 && upd))
+           state = 9;
+         else if ((!(!in_3 && upd) && !(!in_2 && upd) && !in_1 && in_0 && upd))
+           state = 4;
+         else if ((!in_1 && !in_0 && !in_2 && upd && !(!in_3 && upd)))
+           state = 13;
+         else if ((in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)))
+           state = 5;
+         else if ((!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd))
+           state = 2;
+         else 
+           state = 3;
+
+      5: if ((!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd))
+           state = 2;
+         else if (!(!(in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)) && upd))
+           state = 5;
+         else if ((!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)))
+           state = 11;
+         else if ((!(!in_3 && upd) && !(!in_2 && upd) && in_1 && in_0 && upd))
+           state = 9;
+         else if ((!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd))
+           state = 7;
+         else if ((!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd))
+           state = 1;
+         else if ((!in_1 && !in_0 && upd && in_2 && in_3))
+           state = 10;
+         else if ((!in_1 && !in_0 && upd && in_2 && !in_3))
+           state = 3;
+         else if ((!in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)))
+           state = 15;
+         else if ((!(!in_1 && !in_0) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd) && !(!(!in_3 && upd) && !(!in_2 && upd) && !in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && !(in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && upd && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd) && !(in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!in_2 && upd) && !(in_3 && upd)))
+           state = 0;
+         else if ((!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd))
+           state = 8;
+         else if ((!(!in_3 && upd) && !(!in_2 && upd) && !in_1 && in_0 && upd))
+           state = 4;
+         else if ((!in_1 && in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)))
+           state = 6;
+         else if ((!in_1 && !in_0 && !in_2 && upd && !(!in_3 && upd)))
+           state = 13;
+         else if ((in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)))
+           state = 12;
+         else 
+           state = 14;
+
+      12: if ((!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd))
+           state = 2;
+         else if ((in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)))
+           state = 5;
+         else if ((!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)))
+           state = 11;
+         else if ((!(!in_3 && upd) && !(!in_2 && upd) && in_1 && in_0 && upd))
+           state = 9;
+         else if ((!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd))
+           state = 7;
+         else if ((!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd))
+           state = 1;
+         else if ((!in_1 && !in_0 && upd && in_2 && in_3))
+           state = 10;
+         else if ((!in_1 && !in_0 && upd && in_2 && !in_3))
+           state = 3;
+         else if ((!in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)))
+           state = 15;
+         else if ((!(!in_1 && !in_0) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd) && !(!(!in_3 && upd) && !(!in_2 && upd) && !in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && !(in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && upd && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd) && !(in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!in_2 && upd) && !(in_3 && upd)))
+           state = 0;
+         else if ((!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd))
+           state = 8;
+         else if ((!(!in_3 && upd) && !(!in_2 && upd) && !in_1 && in_0 && upd))
+           state = 4;
+         else if ((!in_1 && in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)))
+           state = 6;
+         else if ((!in_1 && !in_0 && !in_2 && upd && !(!in_3 && upd)))
+           state = 13;
+         else if (!(!(in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && upd))
+           state = 12;
+         else 
+           state = 14;
+
+      14: if ((!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd))
+           state = 2;
+         else if ((in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)))
+           state = 5;
+         else if ((!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)))
+           state = 11;
+         else if ((!(!in_3 && upd) && !(!in_2 && upd) && in_1 && in_0 && upd))
+           state = 9;
+         else if ((!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd))
+           state = 7;
+         else if ((!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd))
+           state = 1;
+         else if ((!in_1 && !in_0 && upd && in_2 && in_3))
+           state = 10;
+         else if ((!in_1 && !in_0 && upd && in_2 && !in_3))
+           state = 3;
+         else if ((!in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)))
+           state = 15;
+         else if ((!(!in_1 && !in_0) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd) && !(!(!in_3 && upd) && !(!in_2 && upd) && !in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && !(in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && upd && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd) && !(in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!in_2 && upd) && !(in_3 && upd)))
+           state = 0;
+         else if ((!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd))
+           state = 8;
+         else if ((!(!in_3 && upd) && !(!in_2 && upd) && !in_1 && in_0 && upd))
+           state = 4;
+         else if ((!in_1 && in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)))
+           state = 6;
+         else if ((!in_1 && !in_0 && !in_2 && upd && !(!in_3 && upd)))
+           state = 13;
+         else if ((in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)))
+           state = 12;
+         else 
+           state = 14;
+
+      15: if ((!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd))
+           state = 2;
+         else if ((in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)))
+           state = 5;
+         else if ((!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)))
+           state = 11;
+         else if ((!(!in_3 && upd) && !(!in_2 && upd) && in_1 && in_0 && upd))
+           state = 9;
+         else if ((!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd))
+           state = 7;
+         else if ((!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd))
+           state = 1;
+         else if ((!in_1 && !in_0 && upd && in_2 && in_3))
+           state = 10;
+         else if ((!in_1 && !in_0 && upd && in_2 && !in_3))
+           state = 3;
+         else if (!(!(!in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && upd))
+           state = 15;
+         else if ((!(!in_1 && !in_0) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd) && !(!(!in_3 && upd) && !(!in_2 && upd) && !in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && !(in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && upd && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd) && !(in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!in_2 && upd) && !(in_3 && upd)))
+           state = 0;
+         else if ((!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd))
+           state = 8;
+         else if ((!(!in_3 && upd) && !(!in_2 && upd) && !in_1 && in_0 && upd))
+           state = 4;
+         else if ((!in_1 && in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)))
+           state = 6;
+         else if ((!in_1 && !in_0 && !in_2 && upd && !(!in_3 && upd)))
+           state = 13;
+         else if ((in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)))
+           state = 12;
+         else 
+           state = 14;
+
+      2: if (!(!(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd) && upd))
+           state = 2;
+         else if ((in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)))
+           state = 5;
+         else if ((!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)))
+           state = 11;
+         else if ((!(!in_3 && upd) && !(!in_2 && upd) && in_1 && in_0 && upd))
+           state = 9;
+         else if ((!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd))
+           state = 7;
+         else if ((!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd))
+           state = 1;
+         else if ((!in_1 && !in_0 && upd && in_2 && in_3))
+           state = 10;
+         else if ((!in_1 && !in_0 && upd && in_2 && !in_3))
+           state = 3;
+         else if ((!in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)))
+           state = 15;
+         else if ((!(!in_1 && !in_0) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd) && !(!(!in_3 && upd) && !(!in_2 && upd) && !in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && !(in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && upd && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd) && !(in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!in_2 && upd) && !(in_3 && upd)))
+           state = 0;
+         else if ((!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd))
+           state = 8;
+         else if ((!(!in_3 && upd) && !(!in_2 && upd) && !in_1 && in_0 && upd))
+           state = 4;
+         else if ((!in_1 && in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)))
+           state = 6;
+         else if ((!in_1 && !in_0 && !in_2 && upd && !(!in_3 && upd)))
+           state = 13;
+         else if ((in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)))
+           state = 12;
+         else 
+           state = 14;
+
+      10: if ((!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd))
+           state = 2;
+         else if ((in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)))
+           state = 5;
+         else if ((!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)))
+           state = 11;
+         else if ((!(!in_3 && upd) && !(!in_2 && upd) && in_1 && in_0 && upd))
+           state = 9;
+         else if ((!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd))
+           state = 7;
+         else if ((!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd))
+           state = 1;
+         else if (!(!(!in_1 && !in_0 && upd && in_2 && in_3) && upd))
+           state = 10;
+         else if ((!in_1 && !in_0 && upd && in_2 && !in_3))
+           state = 3;
+         else if ((!in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)))
+           state = 15;
+         else if ((!(!in_1 && !in_0) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd) && !(!(!in_3 && upd) && !(!in_2 && upd) && !in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && !(in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && upd && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd) && !(in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!in_2 && upd) && !(in_3 && upd)))
+           state = 0;
+         else if ((!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd))
+           state = 8;
+         else if ((!(!in_3 && upd) && !(!in_2 && upd) && !in_1 && in_0 && upd))
+           state = 4;
+         else if ((!in_1 && in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)))
+           state = 6;
+         else if ((!in_1 && !in_0 && !in_2 && upd && !(!in_3 && upd)))
+           state = 13;
+         else if ((in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)))
+           state = 12;
+         else 
+           state = 14;
+
+      13: if ((!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd))
+           state = 2;
+         else if ((in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)))
+           state = 5;
+         else if ((!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)))
+           state = 11;
+         else if ((!(!in_3 && upd) && !(!in_2 && upd) && in_1 && in_0 && upd))
+           state = 9;
+         else if ((!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd))
+           state = 7;
+         else if ((!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd))
+           state = 1;
+         else if ((!in_1 && !in_0 && upd && in_2 && in_3))
+           state = 10;
+         else if ((!in_1 && !in_0 && upd && in_2 && !in_3))
+           state = 3;
+         else if ((!in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)))
+           state = 15;
+         else if ((!(!in_1 && !in_0) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd) && !(!(!in_3 && upd) && !(!in_2 && upd) && !in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && !(in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && upd && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd) && !(in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!in_2 && upd) && !(in_3 && upd)))
+           state = 0;
+         else if ((!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd))
+           state = 8;
+         else if ((!(!in_3 && upd) && !(!in_2 && upd) && !in_1 && in_0 && upd))
+           state = 4;
+         else if ((!in_1 && in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)))
+           state = 6;
+         else if (!(!(!in_1 && !in_0 && !in_2 && upd && !(!in_3 && upd)) && upd))
+           state = 13;
+         else if ((in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)))
+           state = 12;
+         else 
+           state = 14;
+
+      4: if ((!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd))
+           state = 2;
+         else if ((in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)))
+           state = 5;
+         else if ((!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)))
+           state = 11;
+         else if ((!(!in_3 && upd) && !(!in_2 && upd) && in_1 && in_0 && upd))
+           state = 9;
+         else if ((!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd))
+           state = 7;
+         else if ((!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd))
+           state = 1;
+         else if ((!in_1 && !in_0 && upd && in_2 && in_3))
+           state = 10;
+         else if ((!in_1 && !in_0 && upd && in_2 && !in_3))
+           state = 3;
+         else if ((!in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)))
+           state = 15;
+         else if ((!(!in_1 && !in_0) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd) && !(!(!in_3 && upd) && !(!in_2 && upd) && !in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && !(in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && upd && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd) && !(in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!in_2 && upd) && !(in_3 && upd)))
+           state = 0;
+         else if ((!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd))
+           state = 8;
+         else if (!(!(!(!in_3 && upd) && !(!in_2 && upd) && !in_1 && in_0 && upd) && upd))
+           state = 4;
+         else if ((!in_1 && in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)))
+           state = 6;
+         else if ((!in_1 && !in_0 && !in_2 && upd && !(!in_3 && upd)))
+           state = 13;
+         else if ((in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)))
+           state = 12;
+         else 
+           state = 14;
+
+      7: if ((!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd))
+           state = 2;
+         else if ((in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)))
+           state = 5;
+         else if ((!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)))
+           state = 11;
+         else if ((!(!in_3 && upd) && !(!in_2 && upd) && in_1 && in_0 && upd))
+           state = 9;
+         else if (!(!(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && upd))
+           state = 7;
+         else if ((!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd))
+           state = 1;
+         else if ((!in_1 && !in_0 && upd && in_2 && in_3))
+           state = 10;
+         else if ((!in_1 && !in_0 && upd && in_2 && !in_3))
+           state = 3;
+         else if ((!in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)))
+           state = 15;
+         else if ((!(!in_1 && !in_0) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd) && !(!(!in_3 && upd) && !(!in_2 && upd) && !in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && !(in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && upd && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd) && !(in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!in_2 && upd) && !(in_3 && upd)))
+           state = 0;
+         else if ((!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd))
+           state = 8;
+         else if ((!(!in_3 && upd) && !(!in_2 && upd) && !in_1 && in_0 && upd))
+           state = 4;
+         else if ((!in_1 && in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)))
+           state = 6;
+         else if ((!in_1 && !in_0 && !in_2 && upd && !(!in_3 && upd)))
+           state = 13;
+         else if ((in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)))
+           state = 12;
+         else 
+           state = 14;
+
+      3: if ((!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd))
+           state = 2;
+         else if ((in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)))
+           state = 5;
+         else if ((!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)))
+           state = 11;
+         else if ((!(!in_3 && upd) && !(!in_2 && upd) && in_1 && in_0 && upd))
+           state = 9;
+         else if ((!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd))
+           state = 7;
+         else if ((!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd))
+           state = 1;
+         else if ((!in_1 && !in_0 && upd && in_2 && in_3))
+           state = 10;
+         else if (!(!(!in_1 && !in_0 && upd && in_2 && !in_3) && upd))
+           state = 3;
+         else if ((!in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)))
+           state = 15;
+         else if ((!(!in_1 && !in_0) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd) && !(!(!in_3 && upd) && !(!in_2 && upd) && !in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && !(in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && upd && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd) && !(in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!in_2 && upd) && !(in_3 && upd)))
+           state = 0;
+         else if ((!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd))
+           state = 8;
+         else if ((!(!in_3 && upd) && !(!in_2 && upd) && !in_1 && in_0 && upd))
+           state = 4;
+         else if ((!in_1 && in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)))
+           state = 6;
+         else if ((!in_1 && !in_0 && !in_2 && upd && !(!in_3 && upd)))
+           state = 13;
+         else if ((in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)))
+           state = 12;
+         else 
+           state = 14;
+
+      9: if ((!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd))
+           state = 2;
+         else if ((in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)))
+           state = 5;
+         else if ((!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)))
+           state = 11;
+         else if (!(!(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && in_0 && upd) && upd))
+           state = 9;
+         else if ((!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd))
+           state = 7;
+         else if ((!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd))
+           state = 1;
+         else if ((!in_1 && !in_0 && upd && in_2 && in_3))
+           state = 10;
+         else if ((!in_1 && !in_0 && upd && in_2 && !in_3))
+           state = 3;
+         else if ((!in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)))
+           state = 15;
+         else if ((!(!in_1 && !in_0) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd) && !(!(!in_3 && upd) && !(!in_2 && upd) && !in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && !(in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && upd && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd) && !(in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!in_2 && upd) && !(in_3 && upd)))
+           state = 0;
+         else if ((!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd))
+           state = 8;
+         else if ((!(!in_3 && upd) && !(!in_2 && upd) && !in_1 && in_0 && upd))
+           state = 4;
+         else if ((!in_1 && in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)))
+           state = 6;
+         else if ((!in_1 && !in_0 && !in_2 && upd && !(!in_3 && upd)))
+           state = 13;
+         else if ((in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)))
+           state = 12;
+         else 
+           state = 14;
+
+      1: if ((!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd))
+           state = 2;
+         else if ((in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)))
+           state = 5;
+         else if ((!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)))
+           state = 11;
+         else if ((!(!in_3 && upd) && !(!in_2 && upd) && in_1 && in_0 && upd))
+           state = 9;
+         else if ((!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd))
+           state = 7;
+         else if (!(!(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && upd))
+           state = 1;
+         else if ((!in_1 && !in_0 && upd && in_2 && in_3))
+           state = 10;
+         else if ((!in_1 && !in_0 && upd && in_2 && !in_3))
+           state = 3;
+         else if ((!in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)))
+           state = 15;
+         else if ((!(!in_1 && !in_0) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd) && !(!(!in_3 && upd) && !(!in_2 && upd) && !in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && !(in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && upd && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd) && !(in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!in_2 && upd) && !(in_3 && upd)))
+           state = 0;
+         else if ((!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd))
+           state = 8;
+         else if ((!(!in_3 && upd) && !(!in_2 && upd) && !in_1 && in_0 && upd))
+           state = 4;
+         else if ((!in_1 && in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)))
+           state = 6;
+         else if ((!in_1 && !in_0 && !in_2 && upd && !(!in_3 && upd)))
+           state = 13;
+         else if ((in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)))
+           state = 12;
+         else 
+           state = 14;
+
+      6: if ((!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd))
+           state = 2;
+         else if ((in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)))
+           state = 5;
+         else if ((!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)))
+           state = 11;
+         else if ((!(!in_3 && upd) && !(!in_2 && upd) && in_1 && in_0 && upd))
+           state = 9;
+         else if ((!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd))
+           state = 7;
+         else if ((!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd))
+           state = 1;
+         else if ((!in_1 && !in_0 && upd && in_2 && in_3))
+           state = 10;
+         else if ((!in_1 && !in_0 && upd && in_2 && !in_3))
+           state = 3;
+         else if ((!in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)))
+           state = 15;
+         else if ((!(!in_1 && !in_0) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd) && !(!(!in_3 && upd) && !(!in_2 && upd) && !in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && !(in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && upd && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd) && !(in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!in_2 && upd) && !(in_3 && upd)))
+           state = 0;
+         else if ((!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd))
+           state = 8;
+         else if ((!(!in_3 && upd) && !(!in_2 && upd) && !in_1 && in_0 && upd))
+           state = 4;
+         else if (!(!(!in_1 && in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)) && upd))
+           state = 6;
+         else if ((!in_1 && !in_0 && !in_2 && upd && !(!in_3 && upd)))
+           state = 13;
+         else if ((in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)))
+           state = 12;
+         else 
+           state = 14;
+
+      8: if ((!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd))
+           state = 2;
+         else if ((in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)))
+           state = 5;
+         else if ((!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)))
+           state = 11;
+         else if ((!(!in_3 && upd) && !(!in_2 && upd) && in_1 && in_0 && upd))
+           state = 9;
+         else if ((!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd))
+           state = 7;
+         else if ((!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd))
+           state = 1;
+         else if ((!in_1 && !in_0 && upd && in_2 && in_3))
+           state = 10;
+         else if ((!in_1 && !in_0 && upd && in_2 && !in_3))
+           state = 3;
+         else if ((!in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)))
+           state = 15;
+         else if ((!(!in_1 && !in_0) && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(in_2 && upd) && !(in_3 && upd)) && !(!(!in_3 && upd) && !(!in_2 && upd) && in_1 && !in_0 && upd) && !(!(!in_3 && upd) && !(!in_2 && upd) && !in_1 && in_0 && upd) && !(!in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && !(in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)) && upd && !(!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd) && !(in_1 && !in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)) && !(!(in_2 && upd) && !(!in_3 && upd) && in_1 && in_0 && upd) && !(!in_2 && upd) && !(in_3 && upd)))
+           state = 0;
+         else if (!(!(!(in_2 && upd) && !(in_3 && upd) && in_1 && !in_0 && upd) && upd))
+           state = 8;
+         else if ((!(!in_3 && upd) && !(!in_2 && upd) && !in_1 && in_0 && upd))
+           state = 4;
+         else if ((!in_1 && in_0 && upd && !(in_2 && upd) && !(!in_3 && upd)))
+           state = 6;
+         else if ((!in_1 && !in_0 && !in_2 && upd && !(!in_3 && upd)))
+           state = 13;
+         else if ((in_1 && in_0 && upd && !(!in_2 && upd) && !(in_3 && upd)))
+           state = 12;
+         else 
+           state = 14;
+
+    endcase
+  end
+endmodule

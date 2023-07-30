@@ -1,6 +1,6 @@
-"benchmark","self"
-"shift","SUCCESS"
-"mux","ERROR_COMBINE_AIGER"
-"detector","SUCCESS"
-"simple_arbiter","SUCCESS"
-"full_arbiter","SUCCESS"
+benchmark,self
+shift,SUCCESS
+mux,ERROR_COMBINE_AIGER
+detector,SUCCESS
+simple_arbiter,SUCCESS
+full_arbiter,SUCCESS
