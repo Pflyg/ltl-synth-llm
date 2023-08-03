@@ -34,7 +34,6 @@ def synthesize(
     bosy_input = syfco.convert(spec, "bosy", overwrite_params=overwrite_params)
 
     code = synthesize_bosy(input=bosy_input, target=target, timeout=timeout)
-
     # we have to explicitly change the module name from the default "fsm"
     return rename_module(code, module_name, "fsm") if target == "verilog" else code
 
@@ -59,7 +58,9 @@ def synthesize_bosy(input: str, target: str = "verilog", timeout=60):
             "ghcr.io/frederikschmitt/bosy:latest",
             mounts=[mount],
             entrypoint=".build/release/BoSyBackend",
-            command="--automaton-tool spot --synthesize --target verilog _mount/"
+            command="--automaton-tool spot --synthesize --target "
+            + target
+            + " _mount/"
             + tmpname,
             detach=(timeout != None),
         )
@@ -68,8 +69,10 @@ def synthesize_bosy(input: str, target: str = "verilog", timeout=60):
         # this timeout code is still a bit wonky and probably unreliable
         try:
             res = container.wait(timeout=timeout)
-            # print(res, container.logs(stderr=False))
-            return container.logs(stderr=False)
+            logs = container.logs(stderr=False)
+            if isinstance(logs, bytes):
+                logs = logs.decode()
+            return logs
         except:
             container.kill()
             raise TimeoutError()

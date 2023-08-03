@@ -93,52 +93,48 @@ def build_prompt(
     spec = read_file(bm.specification)
     if params == None:
         params = bm.generate_params
-        if mode != "none":
-            for impl in bm.implementations:
-                match mode:
-                    case "self":
-                        impl_code = read_file(
-                            os.path.join(
-                                os.path.dirname(bm.specification), impl["file"]
-                            )
-                        )
-                    case "bosy":
-                        impl_code = cache_benchmark_code(
-                            bm=bm,
-                            impl=impl,
-                            additional_discriminator=mode,
-                            func=lambda: bosy.synthesize(
-                                spec,
-                                overwrite_params=impl["params"],
-                                module_name=bm.name,
-                                timeout=timeout,
-                            ),
-                        )
-                    case "strix":
-                        impl_code = cache_benchmark_code(
-                            bm=bm,
-                            impl=impl,
-                            additional_discriminator=mode,
-                            func=lambda: strix.synthesize(
-                                spec,
-                                overwrite_params=impl["params"],
-                                module_name=bm.name,
-                                timeout=timeout,
-                            ),
-                        )
-                    case _:
-                        raise Exception("Unsupported mode '" + mode + "'")
-                prompt.add_example(
-                    {
-                        "SPEC": syfco.convert(
-                            spec, "ltl", overwrite_params=impl["params"]
+    if mode != "none":
+        for impl in bm.implementations:
+            match mode:
+                case "self":
+                    impl_code = read_file(
+                        os.path.join(os.path.dirname(bm.specification), impl["file"])
+                    )
+                case "bosy":
+                    impl_code = cache_benchmark_code(
+                        bm=bm,
+                        impl=impl,
+                        additional_discriminator=mode,
+                        func=lambda: bosy.synthesize(
+                            spec,
+                            overwrite_params=impl["params"],
+                            module_name=bm.name,
+                            timeout=timeout,
                         ),
-                        "IMPL": impl_code,
-                        "PARAMS": " and ".join(
-                            [k + "=" + str(v) for (k, v) in impl["params"].items()]
+                    )
+                case "strix":
+                    impl_code = cache_benchmark_code(
+                        bm=bm,
+                        impl=impl,
+                        additional_discriminator=mode,
+                        func=lambda: strix.synthesize(
+                            spec,
+                            overwrite_params=impl["params"],
+                            module_name=bm.name,
+                            timeout=timeout,
                         ),
-                    }
-                )
+                    )
+                case _:
+                    raise Exception("Unsupported mode '" + mode + "'")
+            prompt.add_example(
+                {
+                    "SPEC": syfco.convert(spec, "ltl", overwrite_params=impl["params"]),
+                    "IMPL": impl_code,
+                    "PARAMS": " and ".join(
+                        [k + "=" + str(v) for (k, v) in impl["params"].items()]
+                    ),
+                }
+            )
     return prompt.build_prompt(
         {"SPEC": syfco.convert(spec, "ltl", overwrite_params=params)}
     )

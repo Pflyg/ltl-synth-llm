@@ -1,0 +1,28 @@
+module ltl2dba_C2(p_0, p_1, acc);
+  input p_0;
+  input p_1;
+  output acc;
+  reg [0:0] state;
+
+  assign acc = ((state == 1) && p_0 || (state == 0) && p_1) ? 1 : 0;
+
+  initial
+  begin
+    state = 0;
+  end
+  always @($global_clock)
+  begin
+    case(state)
+      1: if ((!p_1 && p_0))
+           state = 0;
+         else 
+           state = 1;
+
+      0: if ((p_1 && !p_0))
+           state = 1;
+         else 
+           state = 0;
+
+    endcase
+  end
+endmodule

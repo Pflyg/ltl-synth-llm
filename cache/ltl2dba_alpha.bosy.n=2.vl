@@ -1,0 +1,36 @@
+module ltl2dba_alpha(q, p, acc);
+  input q;
+  input p;
+  output acc;
+  reg [1:0] state;
+
+  assign acc = ((state == 1) && (p && q) || (state == 2) && 1) ? 1 : 0;
+
+  initial
+  begin
+    state = 0;
+  end
+  always @($global_clock)
+  begin
+    case(state)
+      3: if (!(p && q))
+           state = 0;
+         else 
+           state = 1;
+
+      2: 
+           state = 2;
+
+      1: if ((p && q))
+           state = 2;
+         else 
+           state = 0;
+
+      0: if (!(p && q))
+           state = 0;
+         else 
+           state = 3;
+
+    endcase
+  end
+endmodule
