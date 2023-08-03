@@ -1,7 +1,7 @@
 from abc import ABCMeta, abstractmethod
 
 
-def _interpolate_string(string: str, replacements: dict) -> str:
+def interpolate_string(string: str, replacements: dict) -> str:
     for key, val in replacements.items():
         string = string.replace("%" + key + "%", val)
     return string
@@ -12,10 +12,10 @@ class PromptTemplate(metaclass=ABCMeta):
         self.examples = []
 
     def add_example(self, replacements: dict = {}):
-        self.examples.append(_interpolate_string(self._example, replacements))
+        self.examples.append(interpolate_string(self._example, replacements))
 
     def build_prompt(self, replacements: dict = {}):
-        return _interpolate_string(
+        return interpolate_string(
             self._start + "\n" + "\n".join(self.examples) + "\n" + self._question,
             replacements,
         )
