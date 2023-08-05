@@ -6,6 +6,11 @@ from utils import rename_module
 
 from tempfile import TemporaryDirectory
 
+
+class BosyError(Exception):
+    pass
+
+
 try:
     client = docker.from_env()
     client.images.pull("ghcr.io/frederikschmitt/bosy:latest")
@@ -32,7 +37,6 @@ def synthesize(
 
     # generate bosy input
     bosy_input = syfco.convert(spec, "bosy", overwrite_params=overwrite_params)
-
     code = synthesize_bosy(input=bosy_input, target=target, timeout=timeout)
     # we have to explicitly change the module name from the default "fsm"
     return rename_module(code, module_name, "fsm") if target == "verilog" else code
@@ -62,20 +66,25 @@ def synthesize_bosy(input: str, target: str = "verilog", timeout=60):
             + target
             + " _mount/"
             + tmpname,
-            detach=(timeout != None),
+            detach=True,
         )
-        if timeout == None:
-            return container.decode()  # not really a container in that case
         # this timeout code is still a bit wonky and probably unreliable
         try:
-            res = container.wait(timeout=timeout)
-            logs = container.logs(stderr=False)
-            if isinstance(logs, bytes):
-                logs = logs.decode()
-            return logs
-        except:
+            container.wait(timeout=timeout)
+            stdout = container.logs(stdout=True, stderr=False)
+            stderr = container.logs(stdout=False, stderr=True)
+            if isinstance(stdout, bytes):
+                stdout = stdout.decode()
+            if isinstance(stderr, bytes):
+                stderr = stderr.decode()
+            if (
+                "error:" in stderr or stdout == ""
+            ):  # BoSy doesn't seem to have an option to quiet info on stderr
+                raise BosyError()
+            return stdout
+        except TimeoutError:
             container.kill()
-            raise TimeoutError()
+            raise TimeoutError from None
 
 
 '''
