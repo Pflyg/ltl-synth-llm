@@ -1,6 +1,8 @@
 import docker
 from docker.errors import DockerException
 import os
+
+import requests
 import syfco
 from utils import rename_module
 
@@ -68,7 +70,7 @@ def synthesize_bosy(input: str, target: str = "verilog", timeout=60):
             + tmpname,
             detach=True,
         )
-        # this timeout code is still a bit wonky and probably unreliable
+        # this timeout code is still a bit wonky and probably unreliable, due to the docker bindings being a bit buggy
         try:
             container.wait(timeout=timeout)
             stdout = container.logs(stdout=True, stderr=False)
@@ -82,7 +84,12 @@ def synthesize_bosy(input: str, target: str = "verilog", timeout=60):
             ):  # BoSy doesn't seem to have an option to quiet info on stderr
                 raise BosyError()
             return stdout
-        except TimeoutError:
+        # https://github.com/docker/docker-py/issues/1966
+        except (
+            TimeoutError,
+            requests.exceptions.ReadTimeout,
+            requests.exceptions.ConnectionError,
+        ):
             container.kill()
             raise TimeoutError from None
 
