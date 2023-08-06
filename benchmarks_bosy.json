@@ -269,18 +269,18 @@
       "n"
     ],
     "generate": {
-      "n": 32
+      "n": 16
     },
     "specification": "/mnt/win/Users/Benedict/Nextcloud/Dokumente/Uni/Bachelorarbeit/benchmarks/tlsf/shift/parametric/shift.tlsf",
     "implementations": [
       {
         "params": {
-          "n": 8
+          "n": 4
         }
       },
       {
         "params": {
-          "n": 16
+          "n": 8
         }
       }
     ]
