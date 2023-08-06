@@ -24,7 +24,7 @@ def build_expression(node: Node) -> str:
                 return f"!{build_expression(i)}"
             return f"!({build_expression(i)})"
         case ConstFalse():
-            return "1"
+            return "0"
         case Input(name=s):
             return s
         case LatchIn(name=s):
