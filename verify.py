@@ -70,7 +70,7 @@ def verify_file(
             )  # to make sure nuXmv and co are also killed
             return ReturnCode.VERIFICATION_TIMEOUT
         if debug:
-            print(proc.stdout)
+            print(stdout)
 
         returncode = proc.returncode
 
