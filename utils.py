@@ -48,3 +48,7 @@ def get_module_name(code: str) -> str:
         pattern=r".*module\s+(\w+)(?:\s*#.*?\))?\s*\(.*", string=code, flags=re.DOTALL
     )
     return None if matches == None else matches.group(1)
+
+
+def join_params(params: dict):
+    return " and ".join([k + "=" + str(v) for (k, v) in params.items()])
