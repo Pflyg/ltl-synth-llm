@@ -36,6 +36,12 @@ class PromptTemplate(metaclass=ABCMeta):
         pass
 
 
+class NewPromptTemplate(PromptTemplate):
+    _start = "You are an expert in writing correct verilog code, which will fulfill certain formal properties specified in LTL."
+    _example = "Here is an example for %PARAMS%. It satisfies the LTL specification %SPEC%:\n```\n%IMPL%\n```"
+    _question = "Please write a Verilog module fulfilling the following expectations. Make sure the code is fully synthesizable. Only reply with the correct verilog module matching the specification and nothing else. Specification:\n%SPEC%"
+
+
 class DefaultPromptTemplate(PromptTemplate):
     _start = "You are an expert in writing correct verilog code, that fulfill certain formal properties specified in LTL."
     _example = "Here is an example for %PARAMS%. It satisfies the LTL specification %SPEC%:\n```\n%IMPL%\n```"
