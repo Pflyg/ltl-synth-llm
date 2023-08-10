@@ -14,12 +14,15 @@ def synthesize(
 ) -> str:
     """
     Runs the strix binary with options
-    - target: aag (AIGER ASCII), aig (AIGER binary), hoa, bdd, pg, verilog (experimental)
+    - target: aag (AIGER ASCII), aig (AIGER binary), aiger (alias for aag), hoa, bdd, pg, verilog (experimental)
     - spec: should be in tlsf format
     - overwrite_params: overwrite parameters in tlsf file
     - module_name: only used when target = verilog. Defines the verilog output module name
     """
     verilog_mode = target == "verilog"
+
+    if target == "aiger":
+        target = "aag"
 
     inputs = ",".join(syfco.inputs(spec, overwrite_params=overwrite_params))
     outputs = ",".join(syfco.outputs(spec, overwrite_params=overwrite_params))
