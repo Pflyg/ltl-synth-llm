@@ -17,15 +17,15 @@ from aigertoverilog import aiger_to_verilog
 from utils import *
 
 import vertexai  # to interact with googles code chatbot ai
-from vertexai.preview.language_models import (
-    CodeChatModel,
-    ChatModel,
-    InputOutputTextPair,
-    ChatMessage,
-    CodeGenerationModel,
-    TextGenerationModel,
-)
+from vertexai.preview.language_models import ChatModel
 import google
+import time
+
+import openai
+from dotenv import load_dotenv
+
+load_dotenv()  # take environment variables from .env.
+openai.api_key = os.getenv("OPENAI_KEY")
 
 vertexai.init(project="rg-finkbeiner-30141001", location="us-central1")
 chat_model = ChatModel.from_pretrained("chat-bison")
@@ -183,6 +183,56 @@ def run_single_bosy(bm, type):
         return res.name
 
 
+def run_single_openai(bm, type):
+    gens = {
+        "aag": bosy_verilog_aag,
+        "opt_aag": bosy_verilog_opt_aag,
+        "opt_verilog": bosy_verilog_opt_verilog,
+        "standard": bosy_verilog_standard,
+    }
+    # bm.build_prompt might do some heavy work like synthesizing examples with bosy
+    messages = build_prompt_bosy(
+        bm, params=bm.generate_params, synth=gens[type], template=prompting.PromptOpenAI
+    )
+    # print(prompt)
+    count = 0
+    while True:
+        try:
+            completion = openai.ChatCompletion.create(
+                model="gpt-3.5-turbo-16k",
+                messages=messages,
+                temperature=0.8,
+                # presence_penalty = -0.5
+            )
+            break
+        except (
+            openai.error.RateLimitError,
+            openai.error.APIError,
+            openai.error.APIConnectionError,
+            openai.error.ServiceUnavailableError,
+            openai.error.Timeout,
+            openai.error.TryAgain,
+        ):  # OpenAI API seems to be quite unstable
+            print("trying again " + str(count))
+            time.sleep(60)
+            count = count + 1
+            if count > 5:
+                print(bm)
+                print("wtf")
+                return "AI_RATELIMIT"
+
+    response = completion.choices[0].message.content
+    print(response)
+    code = extract_normalized_verilog_code(response, bm.name)
+    if code == None:
+        return "NO_CODE"
+    else:
+        res = verify.verify_code(
+            bm.specification, code, overwrite_params=bm.generate_params
+        )
+        return res.name
+
+
 benchmarks = [
     Benchmark(bm, "../../verilog/")
     for bm in json.loads(read_file("benchmarks_bosy.json"))
@@ -226,7 +276,10 @@ def run_benchmarks(
             return run_single(bm, type)
         except TimeoutError:
             return "TIMEOUT"
-        except google.api_core.exceptions.InternalServerError:
+        except (
+            google.api_core.exceptions.InternalServerError,
+            openai.error.InvalidRequestError,
+        ):
             return "AI_ERROR"
         # except Exception as e:
         #  print(e, e.__class__)
@@ -246,7 +299,7 @@ def run_benchmarks(
 
 run_benchmarks(
     benchmarks,
-    run_single=run_single_bosy,
+    run_single=run_single_openai,
     example_types=["aag", "opt_aag", "opt_verilog", "standard"],
-    file="bosy_compare_2.csv",
+    file="bosy_compare_openai_2.csv",
 )
