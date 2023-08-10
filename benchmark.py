@@ -1,5 +1,5 @@
 from typing import Any
-from utils import read_file, write_file
+from utils import read_file, write_file, join_params
 import prompting
 import json
 import os
@@ -88,6 +88,7 @@ def build_prompt(
     mode="self",
     template=prompting.DefaultPromptTemplate,
     timeout=120,
+    return_raw=False,
 ):
     prompt = template()
     spec = read_file(bm.specification)
@@ -130,13 +131,16 @@ def build_prompt(
                 {
                     "SPEC": syfco.convert(spec, "ltl", overwrite_params=impl["params"]),
                     "IMPL": impl_code,
-                    "PARAMS": " and ".join(
-                        [k + "=" + str(v) for (k, v) in impl["params"].items()]
-                    ),
+                    "PARAMS": join_params(impl["params"]),
                 }
             )
     return prompt.build_prompt(
-        {"SPEC": syfco.convert(spec, "ltl", overwrite_params=params)}
+        {
+            "SPEC": syfco.convert(spec, "ltl", overwrite_params=params),
+            "PARAMS": join_params(params),
+        }
+        if not return_raw
+        else prompt
     )
 
 
