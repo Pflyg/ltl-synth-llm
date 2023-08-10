@@ -1,0 +1,17 @@
+module collector_v2 (
+  input finished_0,
+  input finished_1,
+  output reg allFinished
+);
+  reg l0;
+  reg l1;
+  initial begin
+    l0 = 0;
+    l1 = 0;
+  end
+  assign allFinished = (finished_0) & (!l0);
+  always @(posedge $global_clock) begin
+    l0 <= !((!((finished_0) & (!l0))) & (!((!finished_1) & (l0))));
+    l1 <= !((!((!((!l1) & (!finished_0))) & ((!((finished_1) & (l0))) & (!((finished_0) & (!l0)))))) & (!(((finished_1) & (l0)) & ((!l1) & (!finished_0)))));
+  end
+endmodule

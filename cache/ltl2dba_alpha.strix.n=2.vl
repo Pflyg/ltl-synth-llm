@@ -1,0 +1,17 @@
+module ltl2dba_alpha (
+  input p,
+  input q,
+  output reg acc
+);
+  reg l0;
+  reg l1;
+  initial begin
+    l0 = 0;
+    l1 = 0;
+  end
+  assign acc = (l1) & (!((!((q) & (p))) & (!l0)));
+  always @(posedge $global_clock) begin
+    l0 <= (!((!l1) & (l0))) & (!((!((q) & (p))) & (!l0)));
+    l1 <= !((!(((q) & (p)) & (l0))) & (!((l1) & (!((!((q) & (p))) & (!l0))))));
+  end
+endmodule
