@@ -3,7 +3,7 @@ import re
 
 # This is a naive way of extracting code, but should work for our purposes
 def extract_code_block(str):
-    code = re.search(r"```(?:\w+\n)?([\s\S]+?)\n?```", str)
+    code = re.search(r".*(module\s.+endmodule).*", str, flags=re.DOTALL)
     return None if code == None else code.group(1).strip()
 
 
