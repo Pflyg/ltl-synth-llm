@@ -32,9 +32,9 @@ def synthesize(
     Runs the BoSyBackend binary from a docker container
     - spec: should be in tlsf format
     - target: aiger|dot|dot-topology|smv|verilog|all
-    - automaton-tool: lt3ba|spot
     - overwrite_params: overwrite parameters in tlsf file
     - module_name: only used when target = verilog. Defines the verilog output module name
+    - timeout: specify a timeout in seconds
     """
 
     # generate bosy input
@@ -48,8 +48,9 @@ def synthesize_bosy(input: str, target: str = "verilog", timeout=60):
     """
     Runs the BoSyBackend binary from a docker container
     - target: aiger|dot|dot-topology|smv|verilog|all
-    - automaton-tool: lt3ba|spot
+    - timeout: specify a timeout in seconds
     """
+    # - automaton-tool: lt3ba|spot
     # provides a tempfile
     with TemporaryDirectory() as tmp_dir:
         tmpname = ".tmp.bosy"
