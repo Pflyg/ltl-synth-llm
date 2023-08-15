@@ -30,19 +30,24 @@ class Benchmark:
         self.specification = os.path.join(
             base_dir, self.name, props["specification"] or self.name + ".tlsf"
         )
-        # Sort implementations by param size
-        # I kinda assume that only one parameter is set, but that's all I'm doing in my work anyways
+        """File path for the specification file"""
+
         self.implementations = sorted(
             props["implementations"], key=lambda x: next(iter(x["params"].values()))
         )
+        """Assures that the implementations are sorted in ascending order. This is only assured if there is only one parameter"""
 
     def __repr__(self):
         return "<Benchmark '" + self.name + "'>"
 
     # mode = "self" | "none" | "bosy" | "strix"
 
-    def verify(self, impl: str, params: dict):
-        return verify.verify_code(self.specification, impl, overwrite_params=params)
+    def verify(self, impl: str, overwrite_params: dict = None, timeout=300):
+        if overwrite_params == None:
+            overwrite_params = self.generate_params
+        return verify.verify_code(
+            self.specification, impl, overwrite_params=overwrite_params, timeout=timeout
+        )
 
     def verify_implementations(self):
         for impl in self.implementations:
