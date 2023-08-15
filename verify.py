@@ -82,6 +82,7 @@ def verify_code(
     implementation: str,
     overwrite_params: dict = {},
     overwrite_implementation_params=False,
+    timeout=None,
     debug=False,
 ):
     f = NamedTemporaryFile(suffix=".vl", delete=False, mode="w")
@@ -94,6 +95,7 @@ def verify_code(
         overwrite_params=overwrite_params,
         overwrite_implementation_params=overwrite_implementation_params,
         debug=debug,
+        timeout=timeout,
     )
     os.remove(tmpfile)
     return ret
