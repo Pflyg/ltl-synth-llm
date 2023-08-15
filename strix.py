@@ -1,8 +1,11 @@
 import syfco
 import subprocess
+import os
 from aigertoverilog import aiger_to_verilog
 
-strix_path = "../bin/strix"
+strix_path = os.path.abspath("../bin")
+custom_env = os.environ.copy()
+custom_env["PATH"] = strix_path + ":" + custom_env["PATH"]
 
 
 def synthesize(
@@ -35,7 +38,7 @@ def synthesize(
     )
     out = subprocess.run(
         [
-            strix_path,
+            "strix",
             "--ins",
             inputs,
             "--outs",
@@ -48,6 +51,7 @@ def synthesize(
         capture_output=True,
         timeout=timeout,
         text=True,
+        env=custom_env,
     )
 
     if out.stderr != "":
