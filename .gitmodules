@@ -1,0 +1,3 @@
+[submodule "syntcomp"]
+	path = syntcomp
+	url = https://github.com/SYNTCOMP/benchmarks

@@ -28,7 +28,7 @@ class Benchmark:
         self.params = props["params"]
         self.generate_params = props["generate"]
         self.specification = os.path.join(
-            base_dir, self.name, props["specification"] or self.name + ".tlsf"
+            base_dir, props["specification"] or self.name + ".tlsf"
         )
         """File path for the specification file"""
 
