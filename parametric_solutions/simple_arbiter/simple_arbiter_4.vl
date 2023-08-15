@@ -1,0 +1,10 @@
+module simple_arbiter (
+  input [3:0] r,
+  input clk,
+  output reg [3:0] g
+);
+  initial g = 1;
+  always @(posedge clk) begin
+    g = {g[2:0], g[3]};
+  end
+endmodule

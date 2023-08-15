@@ -1,0 +1,39 @@
+//THIS IS WRONG AND DOES NOT ADHERE TO THE SPECS
+
+module simple_arbiter (
+  input in_0,
+  input in_1,
+  input in_2,
+  input in_3,
+  input clk,
+  output out_0,
+  output out_1,
+  output out_2,
+  output out_3
+);
+
+reg [3:0] requests;
+reg [3:0] i;
+reg [3:0] out;
+assign {out_0, out_1, out_2, out_3} = out;
+initial begin
+ requests = {in_0, in_1, in_2, in_3};
+end
+always @(clk) begin
+  out = 4'b0000;
+  // A for loop to shift the contents of the register
+  for (i = 0; i < 4; i = i + 1) begin
+    $display("I %0d %0d", i, requests[i]);
+    if(requests[i] == 1) begin
+      requests[i] = 0;
+      out[i] = 1;
+      break;
+    end
+  end
+  if(i == 4) begin
+    requests = {in_0, in_1, in_2, in_3};
+  end
+
+end
+
+endmodule

@@ -1,0 +1,39 @@
+module full_arbiter (
+  input r_0,
+  input r_1,
+  input clk,
+  output reg g_0,
+  output reg g_1
+);
+
+  reg [1:0] state;
+  reg [1:0] state_next;
+
+  always @(posedge clk) begin
+    state <= state_next;
+
+    case (state)
+      2'b00: begin
+        g_0 <= r_0;
+        g_1 <= r_1;
+        state_next <= {r_0, r_1};
+      end
+      2'b01: begin
+        g_0 <= r_0;
+        g_1 <= r_1;
+        state_next <= {r_0, r_1};
+      end
+      2'b10: begin
+        g_0 <= r_0;
+        g_1 <= 1'b0;
+        state_next <= {r_0, r_1};
+      end
+      2'b11: begin
+        g_0 <= 1'b0;
+        g_1 <= r_1;
+        state_next <= {r_0, r_1};
+      end
+    endcase
+  end
+
+endmodule

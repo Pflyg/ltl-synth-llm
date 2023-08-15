@@ -1,0 +1,16 @@
+module detector #(parameter n = 2) (
+  input [n-1:0] r,
+  input clk,
+  output reg g
+);
+  reg [n-1:0] state;
+  initial state = '0;
+  always @(posedge clk) begin
+    state = state | r;
+    g = 0;
+    if(state == '1) begin
+      g = 1;
+      state = '0;
+    end
+  end
+endmodule

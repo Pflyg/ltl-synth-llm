@@ -1,0 +1,9 @@
+module mux #(parameter n = 4) (
+  input [n-1:0] in,
+  input [$clog2(n)-1:0] select,
+  input clk,
+  output reg out
+);
+  wire [0:$clog2(n)-1] reversed = select;
+  assign out = in[reversed];
+endmodule

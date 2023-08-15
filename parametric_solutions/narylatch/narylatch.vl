@@ -1,0 +1,18 @@
+module narylatch #(parameter n = 4) (
+  input [n-1:0] in,
+  input upd,
+  input clk,
+  output reg [n-1:0] out
+);
+
+  reg [n-1:0] state;
+  initial state = '0;
+  assign out = upd ? in : state;
+  always @(posedge clk) begin
+    if(upd)
+      state = in;
+    else
+      state = state;
+  end
+
+endmodule

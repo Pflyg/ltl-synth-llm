@@ -1,0 +1,9 @@
+module shift #(parameter n = 2) (
+  input [n-1:0] in,
+  input clk,
+  output [n-1:0] out
+);
+  always @(*) begin
+    out = {in[n-2:0], in[n-1]};
+  end
+endmodule
