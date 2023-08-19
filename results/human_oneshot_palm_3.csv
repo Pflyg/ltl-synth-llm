@@ -1,0 +1,6 @@
+benchmark,bosy,strix
+detector,FALSE_RESULT,FALSE_RESULT
+mux,ERROR_COMBINE_AIGER,FALSE_RESULT
+full_arbiter,FALSE_RESULT,NO_CODE
+simple_arbiter,SUCCESS,FALSE_RESULT
+shift,SUCCESS,SUCCESS

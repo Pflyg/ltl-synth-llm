@@ -3,4 +3,4 @@ mux,128,128,0,128
 detector,8,0,0,0
 shift,512,128,128,128
 simple_arbiter,16,16,0,0
-full_arbiter,0,0,0,0
+full_arbiter,4,0,0,0
