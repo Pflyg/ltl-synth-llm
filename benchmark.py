@@ -35,10 +35,19 @@ class Benchmark:
         self.implementations = sorted(
             props["implementations"], key=lambda x: next(iter(x["params"].values()))
         )
+        for impl in self.implementations:
+            if "file" in impl:
+                impl["file"] = os.path.join(base_dir, impl["file"])
         """Assures that the implementations are sorted in ascending order. This is only assured if there is only one parameter"""
 
     def __repr__(self):
         return "<Benchmark '" + self.name + "'>"
+
+    @staticmethod
+    def load_from_json(json_path: str, base_dir=".") -> list["Benchmark"]:
+        return [
+            Benchmark(bm, base_dir=base_dir) for bm in json.loads(read_file(json_path))
+        ]
 
     # mode = "self" | "none" | "bosy" | "strix"
 
@@ -51,7 +60,7 @@ class Benchmark:
 
     def verify_implementations(self):
         for impl in self.implementations:
-            filename = os.path.join(os.path.dirname(self.specification), impl["file"])
+            filename = impl["file"]
             # print(read_file(filename))
             res = verify.verify_file(
                 self.specification, filename, overwrite_params=impl["params"]
@@ -94,18 +103,26 @@ def build_prompt(
     template=prompting.DefaultPromptTemplate,
     timeout=120,
     return_raw=False,
+    max_examples=100,  # close enough to infinity
 ):
+    """
+    - bm: Benchmark object
+    - params: overwrite the params to generate
+    - mode: which examples to generate. "self" = predefined implementation, "strix" = use strix, "bosy" = use bosy, "none" = no examples
+    - template: which prompt template to use to generate the prompt
+    - timeout: timeout for generating strix/bosy examples
+    - return_raw: if true, return the template object instead
+    - max_examples: max examples to generate
+    """
     prompt = template()
     spec = read_file(bm.specification)
     if params == None:
         params = bm.generate_params
     if mode != "none":
-        for impl in bm.implementations:
+        for impl in bm.implementations[-max_examples:]:
             match mode:
                 case "self":
-                    impl_code = read_file(
-                        os.path.join(os.path.dirname(bm.specification), impl["file"])
-                    )
+                    impl_code = read_file(impl["file"])
                 case "bosy":
                     impl_code = cache_benchmark_code(
                         bm=bm,
