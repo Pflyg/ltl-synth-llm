@@ -7,7 +7,7 @@
     "generate": {
       "n": 8
     },
-    "specification": "amba_decomposed/parametric/amba_decomposed_arbiter.tlsf",
+    "specification": "amba/amba_decomposed/parametric/amba_decomposed_arbiter.tlsf",
     "implementations": [
       {
         "params": {
@@ -29,7 +29,7 @@
     "generate": {
       "n": 16
     },
-    "specification": "amba_decomposed/parametric/amba_decomposed_encode.tlsf",
+    "specification": "amba/amba_decomposed/parametric/amba_decomposed_encode.tlsf",
     "implementations": [
       {
         "params": {
@@ -51,7 +51,7 @@
     "generate": {
       "n": 16
     },
-    "specification": "amba_decomposed/parametric/amba_decomposed_lock.tlsf",
+    "specification": "amba/amba_decomposed/parametric/amba_decomposed_lock.tlsf",
     "implementations": [
       {
         "params": {
