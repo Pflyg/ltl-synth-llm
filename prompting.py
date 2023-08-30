@@ -46,7 +46,7 @@ class NewPromptTemplate(PromptTemplate):
 class DefaultPromptTemplate(PromptTemplate):
     _start = "You are an expert in writing correct verilog code, that fulfill certain formal properties specified in LTL."
     _example = "Here is an example for %PARAMS%. It satisfies the LTL specification %SPEC%:\n```\n%IMPL%\n```"
-    _question = "Please write a Verilog module for %PARAMS% fulfilling the following specification. Make sure the code is fully synthesizable.:\n%SPEC%"
+    _question = "Please write a Verilog module for %PARAMS% fulfilling the following specification. Make sure the code is fully synthesizable:\n%SPEC%"
 
 
 class PromptPALM(DefaultPromptTemplate):
@@ -97,6 +97,24 @@ class ExpertPrompt(DefaultPromptTemplate):
     _start = "Simulate a brilliant computer scientist which is an expert in writing Verilog code such that it satisfies a specification in LTL. At first the expert will be shown some automatically generated examples fro smaller parameter values. Afterwards, he will be asked to write a solution for a bigger specification. It is of upmost importance that the code follows the specification. The prior examples can be used as a basis to start from."
     _example = "Here is a correct example for %PARAMS%. It satisfies the LTL specification %SPEC%:\n%IMPL%"
     _question = "Please write a Verilog module fulfilling the following expectations. Make sure the code is fully synthesizable. Only output the verilog module and nothing else. LTL Specification:\n%SPEC%"
+
+
+class ModuleDefinitionPromptPALM(PromptPALM):
+    _question = """Please write a Verilog module for %PARAMS% using the following module definition as a basis.
+```verilog
+%MODULE_DEF%
+```
+The code needs to be fully synthesizable and follow the following LTL specification:
+%SPEC%"""
+
+
+class ModuleDefinitionPromptOpenAI(PromptOpenAI):
+    _question = """Please write a Verilog module for %PARAMS% using the following module definition as a basis.
+```verilog
+%MODULE_DEF%
+```
+The code needs to be fully synthesizable and follow the following LTL specification:
+%SPEC%"""
 
 
 class PromptOpenAINoSpecification(PromptOpenAI):
