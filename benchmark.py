@@ -96,6 +96,15 @@ def cache_benchmark_code(bm, impl, func, additional_discriminator=""):
     return contents
 
 
+def build_module_definition(spec: str, name: str, params):
+    inputs = ["input " + inp for inp in syfco.inputs(spec, overwrite_params=params)]
+    outputs = [
+        "output reg " + inp for inp in syfco.outputs(spec, overwrite_params=params)
+    ]
+    joined = ", ".join(inputs + outputs)
+    return f"module {name} ({joined})"
+
+
 def build_prompt(
     bm: Benchmark,
     params=None,
@@ -118,6 +127,8 @@ def build_prompt(
     spec = read_file(bm.specification)
     if params == None:
         params = bm.generate_params
+    if max_examples == 0:
+        mode = "none"
     if mode != "none":
         for impl in bm.implementations[-max_examples:]:
             match mode:
@@ -154,14 +165,18 @@ def build_prompt(
                     "SPEC": syfco.convert(spec, "ltl", overwrite_params=impl["params"]),
                     "IMPL": impl_code,
                     "PARAMS": join_params(impl["params"]),
+                    "MODULE_DEF": build_module_definition(
+                        spec, bm.name, impl["params"]
+                    ),
                 }
             )
     return prompt.build_prompt(
         {
             "SPEC": syfco.convert(spec, "ltl", overwrite_params=params),
             "PARAMS": join_params(params),
+            "MODULE_DEF": build_module_definition(spec, bm.name, params),
         }
-        if not return_raw
+        if not return_raw  # if further changes to the build template object are necessary you can return it directly instead of the prompt
         else prompt
     )
 
