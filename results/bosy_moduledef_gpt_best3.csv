@@ -1,7 +1,7 @@
 benchmark,none
-amba_decomposed_arbiter,ERROR_CONVERT_TO_VERILOG
+amba_decomposed_arbiter,ERROR_CONVERT_TO_AIGER
 amba_decomposed_encode,FALSE_RESULT
-amba_decomposed_lock,ERROR_CONVERT_TO_VERILOG
+amba_decomposed_lock,ERROR_CONVERT_TO_AIGER
 collector_v2,FALSE_RESULT
 collector_v3,SUCCESS
 detector,FALSE_RESULT
@@ -12,5 +12,5 @@ mux,SUCCESS
 narylatch,FALSE_RESULT
 prioritized_arbiter,FALSE_RESULT
 shift,SUCCESS
-simple_arbiter,ERROR_CONVERT_TO_VERILOG
+simple_arbiter,ERROR_CONVERT_TO_AIGER
 simple_arbiter_enc,FALSE_RESULT

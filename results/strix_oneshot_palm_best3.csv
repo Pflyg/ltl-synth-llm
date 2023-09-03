@@ -2,7 +2,7 @@ benchmark,bosy,strix
 amba_decomposed_arbiter,AI_ERROR,AI_ERROR
 amba_decomposed_encode,AI_ERROR,NO_CODE
 amba_decomposed_lock,AI_ERROR,NO_CODE
-collector_v1,ERROR_CONVERT_TO_VERILOG,AI_ERROR
+collector_v1,ERROR_CONVERT_TO_AIGER,AI_ERROR
 collector_v2,TIMEOUT,AI_ERROR
 collector_v3,TIMEOUT,SUCCESS
 detector,TIMEOUT,NO_CODE
@@ -10,7 +10,7 @@ full_arbiter,NO_CODE,AI_ERROR
 load_balancer,NO_CODE,AI_ERROR
 ltl2dba_beta,TIMEOUT,AI_ERROR
 ltl2dba_C2,TIMEOUT,NO_CODE
-ltl2dba_E,TIMEOUT,ERROR_CONVERT_TO_VERILOG
+ltl2dba_E,TIMEOUT,ERROR_CONVERT_TO_AIGER
 ltl2dba_Q,TIMEOUT,NO_CODE
 ltl2dba_alpha,TIMEOUT,VERIFICATION_TIMEOUT
 ltl2dba_U1,TIMEOUT,AI_ERROR

@@ -1,6 +1,6 @@
 benchmark,none
-detector,ERROR_CONVERT_TO_VERILOG
+detector,ERROR_CONVERT_TO_AIGER
 mux,SUCCESS
-full_arbiter,ERROR_CONVERT_TO_VERILOG
+full_arbiter,ERROR_CONVERT_TO_AIGER
 simple_arbiter,NO_CODE
 shift,SUCCESS
