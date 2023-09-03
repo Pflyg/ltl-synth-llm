@@ -1,0 +1,6 @@
+benchmark,none
+detector,ERROR_CONVERT_TO_VERILOG
+mux,SUCCESS
+full_arbiter,ERROR_CONVERT_TO_VERILOG
+simple_arbiter,NO_CODE
+shift,SUCCESS

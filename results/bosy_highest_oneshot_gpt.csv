@@ -1,0 +1,16 @@
+benchmark,bosy,strix
+amba_decomposed_arbiter,0,0
+amba_decomposed_encode,0,0
+amba_decomposed_lock,0,0
+collector_v3,128,16
+collector_v2,0,0
+detector,0,0
+load_balancer,0,0
+ltl2dba_alpha,0,0
+mux,0,0
+ltl2dba_C2,0,0
+shift,128,512
+simple_arbiter,8,0
+prioritized_arbiter,0,0
+simple_arbiter_enc,0,0
+narylatch,0,0

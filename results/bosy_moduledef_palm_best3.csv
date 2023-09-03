@@ -1,0 +1,16 @@
+benchmark,none
+amba_decomposed_arbiter,ERROR_COMBINE_AIGER
+amba_decomposed_encode,ERROR_CONVERT_TO_VERILOG
+amba_decomposed_lock,FALSE_RESULT
+collector_v2,FALSE_RESULT
+collector_v3,SUCCESS
+detector,ERROR_CONVERT_TO_VERILOG
+load_balancer,ERROR_CONVERT_TO_VERILOG
+ltl2dba_alpha,ERROR_CONVERT_TO_VERILOG
+ltl2dba_C2,ERROR_CONVERT_TO_VERILOG
+mux,SUCCESS
+narylatch,FALSE_RESULT
+prioritized_arbiter,ERROR_COMBINE_AIGER
+shift,SUCCESS
+simple_arbiter,NO_CODE
+simple_arbiter_enc,ERROR_CONVERT_TO_VERILOG

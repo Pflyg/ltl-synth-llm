@@ -1,0 +1,6 @@
+benchmark,self,bosy,strix,none
+detector,8,0,0,0
+full_arbiter,4,0,0,0
+mux,64,AI_RATELIMIT,AI_RATELIMIT,64
+shift,256,256,128,256
+simple_arbiter,16,16,16,0

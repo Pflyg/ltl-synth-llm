@@ -17,7 +17,13 @@ def crawlDir(path):
     return filtered_files
 
 
-mappings = {"benchmark": "Benchmark"}
+mappings = {
+    "benchmark": "Benchmark",
+    "strix": r"\STRIX",
+    "bosy": r"\BOSY",
+    "none": r"\NONE",
+    "self": r"\SELF",
+}
 
 
 def transform(val, label=False):
@@ -43,8 +49,8 @@ def transformCSV(path):
     rows_def = "".join(
         [" & ".join(row) + " \\\\\n" for row in rows] + [" & ".join(lastrow)]
     )
-    return f"""\\begin{{tblr}}{{colsep=5pt,colspec={{{column_def}}},width=\\textwidth}}
-{header_def}\\hline
+    return f"""\\footnotesize\\begin{{tblr}}{{colsep=5pt,colspec={{{column_def}}},width=\\textwidth,rowspec={{Q[b]|}}}}
+{header_def}
 {rows_def}
 \end{{tblr}}%
 """
@@ -53,7 +59,6 @@ def transformCSV(path):
 def processBenchmarks(benchmarks, result_file):
     rows = [
         r"Benchmark & {Example Parameter Value 1} & {Example Parameter Value 2} & {Parameter Value to generate}\\",
-        "\hline",
     ]
     for bm in sorted(benchmarks, key=lambda x: x.name):
         # incidentally, all benchmarks ONLY use "n" as a parameter name
@@ -64,7 +69,7 @@ def processBenchmarks(benchmarks, result_file):
         )
         rows.append(" & ".join(row) + r"\\")
     rows = "\n".join(rows)
-    table = f"""\\begin{{tblr}}{{colsep=5pt,colspec={{@{{}} A|XXX @{{}}}},width=\\textwidth}}
+    table = f"""\\begin{{tblr}}{{colsep=5pt,colspec={{@{{}} A|XXX @{{}}}},width=\\textwidth,rowspec={{Q[b]|}}}}
 {(rows)}
 \\end{{tblr}}"""
     with open(result_file, "w") as f:
@@ -96,3 +101,5 @@ processBenchmarks(
     Benchmark.load_from_json("../benchmarks_bosy.json", "../syntcomp/tlsf"),
     "tex/benchmarks_bosy.tex",
 )
+
+# ,row{even}={bg=black!10}
