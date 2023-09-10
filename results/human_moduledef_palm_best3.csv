@@ -1,0 +1,6 @@
+benchmark,none
+detector,ERROR_CONVERT_TO_AIGER
+mux,SUCCESS
+full_arbiter,FALSE_RESULT
+simple_arbiter,FALSE_RESULT
+shift,SUCCESS

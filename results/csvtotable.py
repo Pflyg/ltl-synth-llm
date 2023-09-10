@@ -21,6 +21,8 @@ mappings = {
     "benchmark": "Benchmark",
     "strix": r"\STRIX",
     "bosy": r"\BOSY",
+    "gpt": r"\GPT",
+    "palm": r"\PALM",
     "none": r"\NONE",
     "self": r"\SELF",
 }
@@ -49,7 +51,7 @@ def transformCSV(path):
     rows_def = "".join(
         [" & ".join(row) + " \\\\\n" for row in rows] + [" & ".join(lastrow)]
     )
-    return f"""\\footnotesize\\begin{{tblr}}{{colsep=5pt,colspec={{{column_def}}},width=\\textwidth,rowspec={{Q[b]|}}}}
+    return f"""\\footnotesize\\begin{{tblr}}{{colsep=4pt,rowsep=1pt,colspec={{{column_def}}},width=\\textwidth,rowspec={{Q[b]|}}}}
 {header_def}
 {rows_def}
 \end{{tblr}}%
